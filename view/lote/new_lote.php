@@ -64,13 +64,13 @@
             <div class="form-group row">
                     <div class="col-lg-4">
                         <h4>Lúpulos</h4>
-                        <label for="levadura_nuevo_lote">Levadura</label>
-                        <select class="form-control" id="levadura_nuevo_lote" name="levadura_nuevo_lote">
-                            <option value="null">Elige levadura</option>
+                        <label>Nombre</label>
+                        <select class="form-control">
+                            <option value="null">Elige lúpulo</option>
                             <?php
-                                if($all_levaduras){
-                                    foreach ($all_levaduras as $leva) {
-                                        echo '<option value="' . $leva->id_levadura . '">' . $leva->nombre_levadura . '</option>';
+                                if($all_lupulos){
+                                    foreach ($all_lupulos as $lupulo) {
+                                        echo '<option value="' . $lupulo->id_levadura . '">' . $lupulo->nombre_lupulo . '</option>';
                                     }
                                 }
                             ?>

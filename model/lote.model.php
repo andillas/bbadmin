@@ -57,7 +57,7 @@ class Lote
     public function getAllLotes()
     {
         try {
-            $sql = "SELECT * FROM lote WHERE 1;";
+            $sql = "SELECT * FROM lote WHERE 1 ORDER BY id_lote ASC;";
             $qy = $this->conn->prepare($sql);
             if (!$qy->execute()) throw new Exception($qy->error);
 
