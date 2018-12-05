@@ -56,6 +56,10 @@
                             ?>
                         </select>
                     </div>
+                    <div class="col-lg-4">
+                        <label for="azucar_nuevo_lote">Azúcar</label>
+                        <input type="text" class="form-control" id="azucar_nuevo_lote" name="azucar_nuevo_lote">
+                    </div>
             </div>
             <div class="form-group row">
                     <div class="col-lg-4">
