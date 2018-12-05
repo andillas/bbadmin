@@ -62,8 +62,8 @@
                     </div>
             </div>
             <div class="form-group row">
-                    <div class="col-lg-4">
-                        <h4>Lúpulos</h4>
+                <h4>Lúpulos</h4>
+                    <div class="col-lg-3">
                         <label>Nombre</label>
                         <select class="form-control">
                             <option value="null">Elige lúpulo</option>
@@ -76,6 +76,18 @@
                             ?>
                         </select>
                     </div>
+                <div class="col-lg-3">
+                    <label>Cantidad (Gramos)</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-lg-3">
+                    <label>Tiempo (Minutos)</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-lg-1">
+                    <label>&nbsp;</label>
+                    <a class="form-control btn btn-default" onclick="">Añadir</a>
+                </div>
             </div>
 
             <div class="form-group">
