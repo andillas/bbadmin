@@ -69,7 +69,7 @@ class Malta
     public function getAllMaltas()
     {
         try {
-            $sql = "SELECT * FROM malta WHERE 1;";
+            $sql = "SELECT * FROM malta WHERE 1 ORDER BY nombre_malta ASC;";
             $qy = $this->conn->prepare($sql);
             if (!$qy->execute()) throw new Exception($qy->error);
 

@@ -56,22 +56,38 @@
                             ?>
                         </select>
                     </div>
+                    <div class="col-lg-4">
+                        <label for="azucar_nuevo_lote">Azúcar</label>
+                        <input type="text" class="form-control" id="azucar_nuevo_lote" name="azucar_nuevo_lote">
+                    </div>
             </div>
             <div class="form-group row">
-                    <div class="col-lg-4">
-                        <h4>Lúpulos</h4>
-                        <label for="levadura_nuevo_lote">Levadura</label>
-                        <select class="form-control" id="levadura_nuevo_lote" name="levadura_nuevo_lote">
-                            <option value="null">Elige levadura</option>
+                <h4>Lúpulos</h4>
+                    <div class="col-lg-3">
+                        <label>Nombre</label>
+                        <select class="form-control">
+                            <option value="null">Elige lúpulo</option>
                             <?php
-                                if($all_levaduras){
-                                    foreach ($all_levaduras as $leva) {
-                                        echo '<option value="' . $leva->id_levadura . '">' . $leva->nombre_levadura . '</option>';
+                                if($all_lupulos){
+                                    foreach ($all_lupulos as $lupulo) {
+                                        echo '<option value="' . $lupulo->id_levadura . '">' . $lupulo->nombre_lupulo . '</option>';
                                     }
                                 }
                             ?>
                         </select>
                     </div>
+                <div class="col-lg-3">
+                    <label>Cantidad (Gramos)</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-lg-3">
+                    <label>Tiempo (Minutos)</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-lg-1">
+                    <label>&nbsp;</label>
+                    <a class="form-control btn btn-default" onclick="">Añadir</a>
+                </div>
             </div>
 
             <div class="form-group">

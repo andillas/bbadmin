@@ -71,7 +71,7 @@ class Lupulo
      */
     public function getAllLupulos(){
         try{
-            $sql = "SELECT * FROM lupulo WHERE 1;";
+            $sql = "SELECT * FROM lupulo WHERE 1 ORDER BY nombre_lupulo ASC;";
             $qy = $this->conn->prepare($sql);
             if(!$qy->execute()) throw new Exception($qy->error);
 
