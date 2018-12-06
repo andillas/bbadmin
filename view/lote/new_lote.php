@@ -64,7 +64,7 @@
             <div class="form-group row">
                 <h4>Lúpulos</h4>
                     <div class="col-lg-3">
-                        <label>Nombre</label>
+                        <label>Nombre lúpulo</label>
                         <select class="form-control">
                             <option value="null">Elige lúpulo</option>
                             <?php
