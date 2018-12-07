@@ -24,6 +24,20 @@ class Levadura
             return $qy->get_result();
         }catch (Exception $e){
             echo $e->getMessage();
+            return false;
+        }
+    }
+    public function deleteLevaduraById($id){
+        try{
+            $sql = "DELETE FROM levadura WHERE id_levadura = ?;";
+            $qy = $this->conn->prepare($sql);
+            $qy->bind_param('i', $id);
+
+            if(!$qy->execute())throw new Exception($qy->error);
+            return true;
+        }catch (Exception $e){
+            echo $e->getMessage();
+            return false;
         }
     }
 }
