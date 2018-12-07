@@ -1,6 +1,7 @@
 <?php
 require_once 'model/lote.model.php';
 require_once 'model/lupulo.model.php';
+require_once 'model/malta.model.php';
 require_once 'model/levadura.model.php';
 include_once 'utils/output.class.php';
 
@@ -68,22 +69,92 @@ class LoteController
         }
 
     }
-    public function getNewAdicionCode(){
+    public function getNewMaltaHtml(){
         try{
+            $orden = $_POST['orden'];
+            $html_output = '';
+            $all_maltas = [];
+            $obj_malta = new Malta();
+            $result_malta = $obj_malta->getAllMaltas();
+
+            while ($malta = $result_malta->fetch_object()){
+                $all_maltas[] = $malta;
+            }
+
+            $html_output .= '
+                <div id="malta_'.$orden.'">
+                <div class="col-lg-5">
+                <label>Nombre Malta '.$orden.'</label>
+                <select class="form-control">
+                <option value="null">Elige Malta</option>';
+
+            if($all_maltas){
+                foreach ($all_maltas as $malta) {
+                    $html_output .= '<option value="' . $malta->id_malta . '">' . $malta->nombre_malta . '</option>';
+                }
+            }
+
+            $html_output .= '
+                </select>
+                </div>
+                <div class="col-lg-4">
+                    <label>Cantidad (Kilogramos)</label>
+                    <input type="text" class="form-control">
+                </div>
+                </div>
+            ';
+
+            echo $html_output;
+            return true;
+
+        }catch (Exception $e){
+            Output::throwError($e->getMessage());
+        }
+    }
+    public function getNewAdicionHtml(){
+        try{
+            $orden = $_POST['orden'];
+            $html_output = '';
             $all_lupulos = [];
             $obj_lupulo = new Lupulo();
+            $result_lupulo = $obj_lupulo->getAllLupulos();
 
-            while ($lupulo = $obj_lupulo->getAllLupulos()){
+            while ($lupulo = $result_lupulo->fetch_object()){
                 $all_lupulos[] = $lupulo;
             }
 
+            $html_output .= '
+                <div id="lupulo_'.$orden.'">
+                <div class="col-lg-4">
+                <label>Nombre Lúpulo '.$orden.'</label>
+                <select class="form-control">
+                <option value="null">Elige lúpulo</option>';
 
+            if($all_lupulos){
+                foreach ($all_lupulos as $lupulo) {
+                    $html_output .= '<option value="' . $lupulo->id_lupulo . '">' . $lupulo->nombre_lupulo . '</option>';
+                }
+            }
 
+            $html_output .= '
+                </select>
+                </div>
+                <div class="col-lg-3">
+                    <label>Cantidad (Gramos)</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-lg-3">
+                    <label>Tiempo (Minutos)</label>
+                    <input type="text" class="form-control">
+                </div>
+                </div>
+            ';
 
-
+            echo $html_output;
+            return true;
 
         }catch (Exception $e){
-
+            Output::throwError($e->getMessage());
         }
     }
-}
+}//EOC

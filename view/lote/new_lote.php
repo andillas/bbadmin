@@ -2,6 +2,11 @@
     <header><h2>Nuevo Lote</h2></header>
     <article>
         <form>
+
+                                    <!--************-->
+                                    <!-- DATOS LOTE -->
+                                    <!--************-->
+
             <div class="form-group row">
                     <div class="col-lg-5">
                         <label for="nombre_nuevo_lote">Nombre</label>
@@ -28,6 +33,10 @@
                     </div>
             </div>
 
+                                    <!--******-->
+                                    <!-- AGUA -->
+                                    <!--******-->
+
             <div class="form-group row">
                     <div class="col-lg-4">
                         <label for="agua_macerado_nuevo_lote">Agua Macerado (Litros)</label>
@@ -42,6 +51,25 @@
                         <input type="text" class="form-control" id="tiempo_hervido_nuevo_lote" name="tiempo_hervido_nuevo_lote">
                     </div>
             </div>
+
+                                    <!--***********-->
+                                    <!--  MALTAS  -->
+                                    <!--***********-->
+
+            <div class="form-group row">
+                    <div class="col-lg-3">
+                        <label>Maltas</label>
+                        <a class="form-control btn btn-default" style="float: right" onclick="addNewMalta()">Añadir</a>
+                        <a class="form-control btn btn-default" style="float: right" onclick="delNewMalta()">Quitar</a>
+                    </div>
+            </div>
+            <div class="form-group row" id="area_maltas"></div>
+
+
+                                <!--*********************-->
+                                <!--  LEVADURA Y AZÚCAR  -->
+                                <!--*********************-->
+
             <div class="form-group row">
                     <div class="col-lg-4">
                         <label for="levadura_nuevo_lote">Levadura</label>
@@ -57,42 +85,69 @@
                         </select>
                     </div>
                     <div class="col-lg-4">
-                        <label for="azucar_nuevo_lote">Azúcar</label>
+                        <label for="azucar_nuevo_lote">Azúcar (Gramos)</label>
                         <input type="text" class="form-control" id="azucar_nuevo_lote" name="azucar_nuevo_lote">
                     </div>
             </div>
+
+                                    <!--***********-->
+                                    <!--  LÚPULOS  -->
+                                    <!--***********-->
+
             <div class="form-group row">
-                <h4>Lúpulos</h4>
-                    <div class="col-lg-3">
-                        <label>Nombre lúpulo</label>
-                        <select class="form-control">
-                            <option value="null">Elige lúpulo</option>
-                            <?php
-                                if($all_lupulos){
-                                    foreach ($all_lupulos as $lupulo) {
-                                        echo '<option value="' . $lupulo->id_levadura . '">' . $lupulo->nombre_lupulo . '</option>';
-                                    }
-                                }
-                            ?>
-                        </select>
+                    <div class="col-lg-1">
+                        <label>Lúpulos</label>
+                        <a class="form-control btn btn-default" style="float: right" onclick="addNewAdicion()">Añadir</a>
+                        <a class="form-control btn btn-default" style="float: right" onclick="delNewAdicion()">Quitar</a>
                     </div>
-                <div class="col-lg-3">
-                    <label>Cantidad (Gramos)</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-lg-3">
-                    <label>Tiempo (Minutos)</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-lg-1">
-                    <label>&nbsp;</label>
-                    <a class="form-control btn btn-default" onclick="">Añadir</a>
-                </div>
             </div>
+            <div class="form-group row" id="area_lupulos"></div>
+
+                                    <!--**************-->
+                                    <!--  RESULTADOS  -->
+                                    <!--**************-->
+
+            <div class="form-group row">
+                    <div class="col-lg-4">
+                        <label for="di_nuevo_lote">Densidad Inicial</label>
+                        <input type="text" class="form-control" id="di_nuevo_lote" name="di_nuevo_lote">
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="df_nuevo_lote">Densidad Final</label>
+                        <input type="text" class="form-control" id="df_nuevo_lote" name="df_nuevo_lote">
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="litros_nuevo_lote">Litros Embotellados</label>
+                        <input type="text" class="form-control" id="litros_nuevo_lote" name="litros_nuevo_lote">
+                    </div>
+            </div>
+
+            <div class="form-group row">
+                    <div class="col-lg-4">
+                        <label for="alcohol_nuevo_lote">Graduación Alcohólica</label>
+                        <input type="text" class="form-control" id="alcohol_nuevo_lote" name="alcohol_nuevo_lote">
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="atenuacion_nuevo_lote">Atenuación</label>
+                        <input type="text" class="form-control" id="atenuacion_nuevo_lote" name="atenuacion_nuevo_lote">
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="ibus_nuevo_lote">Amargor (IBU)</label>
+                        <input type="text" class="form-control" id="ibus_nuevo_lote" name="ibus_nuevo_lote">
+                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="incidencias_nuevo_lote">Incidencias</label>
+                <textarea class="form-control" id="incidencias_nuevo_lote" name="incidencias_nuevo_lote"></textarea>
+            </div>
+
+                                    <!--*************-->
+                                    <!--  BOTONERÍA  -->
+                                    <!--*************-->
 
             <div class="form-group">
                 <button type="button" class="btn btn-default" onclick="saveLupulo(this.form)">Guardar</button>
-                <button type="button" class="btn btn-checkout" onclick="window.location.href='?c=lupulo'">Cancelar</button>
+                <button type="button" class="btn btn-checkout" onclick="window.location.href='?c=lote'">Cancelar</button>
             </div>
         </form>
     </article>

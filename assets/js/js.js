@@ -31,7 +31,6 @@ function logErrorJS(error_msg){
         data: {"action" : "errorlogJS", "msg" : error_msg}
     });
 }//end of logErrorJS
-
 function checknumber(input){
     var typed = input.value;
     if(isNaN(typed)){
@@ -63,7 +62,6 @@ function saveLupulo(form){
         }
     });
 }
-
 function deleteLupulo(id) {
     var lupulo_name = $("#row_lupulo_"+id)
         .find('[data-name="lupuname"]')
@@ -115,7 +113,6 @@ function saveMalta(form){
         }
     });
 }
-
 function deleteMalta(id) {
     var malta_name = $("#row_malta_"+id)
         .find('[data-name="maltaname"]')
@@ -148,19 +145,47 @@ function deleteMalta(id) {
 }
 
 /*******************LOTE********************/
+var maltas = 0;
+function addNewMalta(){
+    maltas ++;
+    let html = '';
+    cl('add new malta');
+    $.ajax({
+        url : '?c=lote&a=getNewMaltaHtml',
+        method : 'POST',
+        data : {"orden" : maltas},
+        error : function(resperror){
+            ce(resperror);
+        },
+        success : function(response){
+            html = response;
+            $("#area_maltas").append(html);
+        }
+    });
+}
+function delNewMalta() {
+    $("#malta_" + maltas).remove();
+    if(maltas > 0)maltas --;
+}
 var adiciones = 0;
 function addNewAdicion(){
     adiciones ++;
+    let html = '';
+    cl('add new adicion');
     $.ajax({
-       url : '',
+       url : '?c=lote&a=getNewAdicionHtml',
        method : 'POST',
        data : {"orden" : adiciones},
        error : function(resperror){
            ce(resperror);
        },
        success : function(response){
-
+            html = response;
+            $("#area_lupulos").append(html);
        }
     });
-    $("#area_lupulos").append(html);
+}
+function delNewAdicion(){
+    $("#lupulo_" + adiciones).remove();
+    if(adiciones > 0)adiciones --;
 }
