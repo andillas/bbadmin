@@ -147,4 +147,20 @@ function deleteMalta(id) {
     }
 }
 
+/*******************LOTE********************/
+var adiciones = 0;
+function addNewAdicion(){
+    adiciones ++;
+    $.ajax({
+       url : '',
+       method : 'POST',
+       data : {"orden" : adiciones},
+       error : function(resperror){
+           ce(resperror);
+       },
+       success : function(response){
 
+       }
+    });
+    $("#area_lupulos").append(html);
+}

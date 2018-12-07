@@ -18,11 +18,11 @@
             </div>
 
             <div class="form-group row">
-                    <div class="col-lg-5">
+                    <div class="col-lg-6">
                         <label for="cocinado_nuevo_lote">Fecha Cocinado</label>
                         <input type="text" class="form-control" id="cocinado_nuevo_lote" name="cocinado_nuevo_lote">
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-6">
                         <label for="embotellado_nuevo_lote">Fecha Embotellado</label>
                         <input type="text" class="form-control" id="embotellado_nuevo_lote" name="embotellado_nuevo_lote">
                     </div>
@@ -61,32 +61,31 @@
                         <input type="text" class="form-control" id="azucar_nuevo_lote" name="azucar_nuevo_lote">
                     </div>
             </div>
-            <div class="form-group row">
-                <h4>Lúpulos</h4>
-                    <div class="col-lg-3">
-                        <label>Nombre</label>
-                        <select class="form-control">
-                            <option value="null">Elige lúpulo</option>
-                            <?php
-                                if($all_lupulos){
-                                    foreach ($all_lupulos as $lupulo) {
-                                        echo '<option value="' . $lupulo->id_levadura . '">' . $lupulo->nombre_lupulo . '</option>';
-                                    }
+            <div class="form-group row" id="area_lupulos">
+                <div class="col-lg-5">
+                    <label>Nombre</label>
+                    <select class="form-control" id="lupulo_adicion_0" name="lupulo_adicion_0">
+                        <option value="null">Elige lúpulo</option>
+                        <?php
+                            if($all_lupulos){
+                                foreach ($all_lupulos as $lupulo) {
+                                    echo '<option value="' . $lupulo->id_levadura . '">' . $lupulo->nombre_lupulo . '</option>';
                                 }
-                            ?>
-                        </select>
-                    </div>
+                            }
+                        ?>
+                    </select>
+                </div>
                 <div class="col-lg-3">
                     <label>Cantidad (Gramos)</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" id="cantidad_adicion_0" name="cantidad_adicion_0">
                 </div>
                 <div class="col-lg-3">
                     <label>Tiempo (Minutos)</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" id="tiempo_adicion_0" name="tiempo_adicion_0">
                 </div>
                 <div class="col-lg-1">
                     <label>&nbsp;</label>
-                    <a class="form-control btn btn-default" onclick="">Añadir</a>
+                    <a class="form-control btn btn-default" onclick="addNewAdicion()">Añadir</a>
                 </div>
             </div>
 

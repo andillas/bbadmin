@@ -68,4 +68,22 @@ class LoteController
         }
 
     }
+    public function getNewAdicionCode(){
+        try{
+            $all_lupulos = [];
+            $obj_lupulo = new Lupulo();
+
+            while ($lupulo = $obj_lupulo->getAllLupulos()){
+                $all_lupulos[] = $lupulo;
+            }
+
+
+
+
+
+
+        }catch (Exception $e){
+
+        }
+    }
 }
