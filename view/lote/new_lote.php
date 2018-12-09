@@ -33,9 +33,9 @@
                     </div>
             </div>
 
-                                    <!--******-->
-                                    <!-- AGUA -->
-                                    <!--******-->
+                                        <!--******-->
+                                        <!-- AGUA -->
+                                        <!--******-->
 
             <div class="form-group row">
                     <div class="col-lg-4">
@@ -52,9 +52,9 @@
                     </div>
             </div>
 
-                                    <!--***********-->
+                                    <!--**********-->
                                     <!--  MALTAS  -->
-                                    <!--***********-->
+                                    <!--**********-->
 
             <div class="form-group row">
                     <div class="col-lg-3">
@@ -64,6 +64,19 @@
                     </div>
             </div>
             <div class="form-group row" id="area_maltas"></div>
+
+                                    <!--***********-->
+                                    <!--  LÚPULOS  -->
+                                    <!--***********-->
+
+            <div class="form-group row">
+                <div class="col-lg-1">
+                    <label>Lúpulos</label>
+                    <a class="form-control btn btn-default" style="float: right" onclick="addNewAdicion()">Añadir</a>
+                    <a class="form-control btn btn-default" style="float: right" onclick="delNewAdicion()">Quitar</a>
+                </div>
+            </div>
+            <div class="form-group row" id="area_lupulos"></div>
 
 
                                 <!--*********************-->
@@ -89,19 +102,6 @@
                         <input type="text" class="form-control" id="azucar_nuevo_lote" name="azucar_nuevo_lote">
                     </div>
             </div>
-
-                                    <!--***********-->
-                                    <!--  LÚPULOS  -->
-                                    <!--***********-->
-
-            <div class="form-group row">
-                    <div class="col-lg-1">
-                        <label>Lúpulos</label>
-                        <a class="form-control btn btn-default" style="float: right" onclick="addNewAdicion()">Añadir</a>
-                        <a class="form-control btn btn-default" style="float: right" onclick="delNewAdicion()">Quitar</a>
-                    </div>
-            </div>
-            <div class="form-group row" id="area_lupulos"></div>
 
                                     <!--**************-->
                                     <!--  RESULTADOS  -->
@@ -130,6 +130,7 @@
                     <div class="col-lg-4">
                         <label for="atenuacion_nuevo_lote">Atenuación</label>
                         <input type="text" class="form-control" id="atenuacion_nuevo_lote" name="atenuacion_nuevo_lote">
+                        <input type="button" class="form-control" value="Calcular">
                     </div>
                     <div class="col-lg-4">
                         <label for="ibus_nuevo_lote">Amargor (IBU)</label>
