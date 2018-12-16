@@ -1,3 +1,25 @@
+<script src="assets/js/bootstrap-datepicker-1.6.4-dist/js/bootstrap-datepicker.js"></script>
+
+<script>
+    $(function() {
+        $('#cocinado_nuevo_lote').datepicker({
+            format: "yyyy/mm/dd",
+            todayBtn: "linked",
+            clearBtn: true,
+            language: "es",
+            autoclose: true,
+            todayHighlight: true
+        });
+        $('#embotellado_nuevo_lote').datepicker({
+            format: "yyyy/mm/dd",
+            todayBtn: "linked",
+            clearBtn: true,
+            language: "es",
+            autoclose: true,
+            todayHighlight: true
+        });
+    });
+</script>
 <section class="container">
     <header><h2>Nuevo Lote</h2></header>
     <article>
@@ -17,8 +39,8 @@
                         <input type="text" class="form-control" id="tipo_nuevo_lote" name="tipo_nuevo_lote">
                     </div>
                     <div class="col-lg-2">
-                        <label for="numero_nuevo_lote">Nº Lote</label>
-                        <input type="text" class="form-control" id="numero_nuevo_lote" name="numero_nuevo_lote">
+                        <label for="referencia_nuevo_lote">Referencia Lote</label>
+                        <input type="text" class="form-control" id="referencia_nuevo_lote" name="referencia_nuevo_lote" value="<?php echo $new_lote_referencia;?>">
                     </div>
             </div>
 
@@ -61,6 +83,7 @@
                         <label>Maltas</label>
                         <a class="form-control btn btn-default" style="float: right" onclick="addNewMalta()">Añadir</a>
                         <a class="form-control btn btn-default" style="float: right" onclick="delNewMalta()">Quitar</a>
+                        <input type="hidden" id="total_maltas" name="total_maltas" value="0">
                     </div>
             </div>
             <div class="form-group row" id="area_maltas"></div>
@@ -74,6 +97,7 @@
                     <label>Lúpulos</label>
                     <a class="form-control btn btn-default" style="float: right" onclick="addNewAdicion()">Añadir</a>
                     <a class="form-control btn btn-default" style="float: right" onclick="delNewAdicion()">Quitar</a>
+                    <input type="hidden" id="total_lupulos" name="total_lupulos" value="0">
                 </div>
             </div>
             <div class="form-group row" id="area_lupulos"></div>
@@ -147,7 +171,7 @@
                                     <!--*************-->
 
             <div class="form-group">
-                <button type="button" class="btn btn-default" onclick="saveLupulo(this.form)">Guardar</button>
+                <button type="button" class="btn btn-default" onclick="saveLote(this.form)">Guardar</button>
                 <button type="button" class="btn btn-checkout" onclick="window.location.href='?c=lote'">Cancelar</button>
             </div>
         </form>

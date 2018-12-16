@@ -160,12 +160,15 @@ function addNewMalta(){
         success : function(response){
             html = response;
             $("#area_maltas").append(html);
+            $("#total_maltas").val(maltas);
         }
     });
 }
 function delNewMalta() {
     $("#malta_" + maltas).remove();
     if(maltas > 0)maltas --;
+    $("#total_maltas").val(maltas)
+
 }
 var adiciones = 0;
 function addNewAdicion(){
@@ -182,10 +185,75 @@ function addNewAdicion(){
        success : function(response){
             html = response;
             $("#area_lupulos").append(html);
+            $("#total_lupulos").val(adiciones);
        }
     });
 }
 function delNewAdicion(){
     $("#lupulo_" + adiciones).remove();
     if(adiciones > 0)adiciones --;
+    $("#total_lupulos").val(adiciones);
+}
+function saveLote(form) {
+
+    //VALIDACION DE CAMPOS REQUERIDOS
+    validateField('nombre_nuevo_lote', 'El nombre es obligatorio.', 'REQUIRED');
+    validateField('referencia_nuevo_lote', 'La referencia es obligatoria.', 'REQUIRED');
+    validateField('cocinado_nuevo_lote', 'La fecha de cocinado es obligatoria.', 'REQUIRED');
+    validateField('agua_macerado_nuevo_lote', 'El agua de macerado es obligatorio.','REQUIRED');
+    validateField('agua_lavado_nuevo_lote', 'El agua de lavado es obligatorio.', 'REQUIRED');
+    validateField('total_maltas', 'Al menos hay que aportar una malta.', 'MIN', 1);
+
+
+    let elform = $(form).serialize();
+    $.ajax({
+       url : "?c=lote&a=saveLote",
+       method : "post",
+       data : elform,
+        error : function (error) {
+            ce(error);
+            return false;
+        },
+        success : function (response) {
+            cw(response);
+            return false;
+        }
+
+    });
+}
+function validateField(campo, mensaje, tipo, valor){
+    let result;
+    let campovalue = $("#"+campo).val().trim();
+    let re;
+
+    switch(tipo){
+        case 'REQUIRED':
+            result = campovalue.length >= 1;
+            break;
+        case 'INT':
+            result = $.isNumeric(campovalue);
+            break;
+        case 'MIN':
+            result = campovalue >= valor;
+            break;
+        case 'MAX':
+            result = campovalue <= valor;
+            break;
+        case 'EMAIL':
+            re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+	        result = re.test(campovalue);
+            break;
+        case 'URL':
+            re = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/;
+            result = re.test(input);
+            break;
+        case 'PHONE':
+            break;
+    }
+    if(!result){
+        alert(mensaje);
+        console.warn(mensaje);
+        return false;
+    }
+    return result;
 }
