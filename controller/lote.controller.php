@@ -3,8 +3,8 @@ require_once 'model/lote.model.php';
 require_once 'model/lupulo.model.php';
 require_once 'model/malta.model.php';
 require_once 'model/levadura.model.php';
-include_once 'utils/output.class.php';
-include_once 'utils/superlog.class.php';
+include_once 'core/output.class.php';
+include_once 'core/superlog.class.php';
 
 class LoteController
 {

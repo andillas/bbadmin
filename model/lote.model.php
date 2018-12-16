@@ -6,7 +6,7 @@
  * Time: 12:56
  */
 require_once 'conn.class.php';
-include_once 'utils/sqlpreparedviewer.class.php';
+include_once 'core/sqlpreparedviewer.class.php';
 
 class Lote
 {
