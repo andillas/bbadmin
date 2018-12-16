@@ -27,6 +27,7 @@ class Lote
     public function saveLote($lote_data)
     {
         try {
+            Superlog::log('SaveLote');
             $sql = "INSERT INTO lote(
                  ref_lote,
                  nombre, 
@@ -69,11 +70,13 @@ class Lote
 
             return $this->conn->insert_id;
         } catch (Exception $e) {
-            return $e->getMessage();
+            Superlog::log($e->getMessage());
+            return false;
         }
     }
     public function saveLoteMalta($malta, $id_lote){
         try{
+            Superlog::log('saveLoteMalta');
             $tipo_malta = '';
             $cantidad_malta = '';
 
@@ -89,7 +92,8 @@ class Lote
             }
             return true;
         }catch (Exception $e){
-            return $e->getMessage();
+            Superlog::log($e->getMessage());
+            return false;
         }
     }
     public function saveLoteLupulo($lupulo, $id_lote){

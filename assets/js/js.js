@@ -39,6 +39,37 @@ function checknumber(input){
     console.log(typed);
     return false;
 }
+function validateField(campo, tipo, valor){
+    let result;
+    let campovalue = $("#"+campo).val().trim();
+    let re;
+
+    switch(tipo){
+        case 'REQUIRED':
+            result = campovalue.length >= 1;
+            break;
+        case 'INT':
+            result = $.isNumeric(campovalue);
+            break;
+        case 'MIN':
+            result = campovalue >= valor;
+            break;
+        case 'MAX':
+            result = campovalue <= valor;
+            break;
+        case 'EMAIL':
+            re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            result = re.test(campovalue);
+            break;
+        case 'URL':
+            re = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/;
+            result = re.test(input);
+            break;
+        case 'PHONE':
+            break;
+    }
+    return result;
+}
 
 $(document).ready(function(){
    //DOES NOTHING BY NOW;
@@ -158,9 +189,13 @@ function addNewMalta(){
             ce(resperror);
         },
         success : function(response){
-            html = response;
-            $("#area_maltas").append(html);
-            $("#total_maltas").val(maltas);
+            if(response.status === "ok"){
+                html = response.content;
+                $("#area_maltas").append(html);
+                $("#total_maltas").val(maltas);
+            }else{
+                alert("No ha sido posible realizar la acción.");
+            }
         }
     });
 }
@@ -183,9 +218,14 @@ function addNewAdicion(){
            ce(resperror);
        },
        success : function(response){
-            html = response;
-            $("#area_lupulos").append(html);
-            $("#total_lupulos").val(adiciones);
+           if(response.status ==="ok"){
+               html = response.content;
+               $("#area_lupulos").append(html);
+               $("#total_lupulos").val(adiciones);
+           }else{
+              alert("No ha sido posible realizar la acción.");
+           }
+
        }
     });
 }
@@ -197,15 +237,16 @@ function delNewAdicion(){
 function saveLote(form) {
 
     //VALIDACION DE CAMPOS REQUERIDOS
-    validateField('nombre_nuevo_lote', 'El nombre es obligatorio.', 'REQUIRED');
-    validateField('referencia_nuevo_lote', 'La referencia es obligatoria.', 'REQUIRED');
-    validateField('cocinado_nuevo_lote', 'La fecha de cocinado es obligatoria.', 'REQUIRED');
-    validateField('agua_macerado_nuevo_lote', 'El agua de macerado es obligatorio.','REQUIRED');
-    validateField('agua_lavado_nuevo_lote', 'El agua de lavado es obligatorio.', 'REQUIRED');
-    validateField('total_maltas', 'Al menos hay que aportar una malta.', 'MIN', 1);
-
+    if(!validateField('nombre_nuevo_lote', 'REQUIRED'))return alert('El nombre es obligatorio.');
+    if(!validateField('referencia_nuevo_lote', 'REQUIRED'))return alert('La referencia es obligatoria.');
+    if(!validateField('cocinado_nuevo_lote', 'REQUIRED'))return alert('La fecha de cocinado es obligatoria.');
+    if(!validateField('agua_macerado_nuevo_lote', 'REQUIRED'))return alert('El agua de macerado es obligatorio.');
+    if(!validateField('agua_lavado_nuevo_lote', 'REQUIRED'))return alert('El agua de lavado es obligatorio.');
+    if(!validateField('total_maltas', 'MIN', 1))return alert('Al menos hay que aportar una malta.');
+    if(!validateField('levadura_nuevo_lote', 'REQUIRED'))return alert('Hay que seleccionar la levadura.');
 
     let elform = $(form).serialize();
+
     $.ajax({
        url : "?c=lote&a=saveLote",
        method : "post",
@@ -215,45 +256,12 @@ function saveLote(form) {
             return false;
         },
         success : function (response) {
-            cw(response);
+           cl(response);
+           if(response.status === "error"){
+               alert(response.message);
+           }
             return false;
         }
 
     });
-}
-function validateField(campo, mensaje, tipo, valor){
-    let result;
-    let campovalue = $("#"+campo).val().trim();
-    let re;
-
-    switch(tipo){
-        case 'REQUIRED':
-            result = campovalue.length >= 1;
-            break;
-        case 'INT':
-            result = $.isNumeric(campovalue);
-            break;
-        case 'MIN':
-            result = campovalue >= valor;
-            break;
-        case 'MAX':
-            result = campovalue <= valor;
-            break;
-        case 'EMAIL':
-            re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-	        result = re.test(campovalue);
-            break;
-        case 'URL':
-            re = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/;
-            result = re.test(input);
-            break;
-        case 'PHONE':
-            break;
-    }
-    if(!result){
-        alert(mensaje);
-        console.warn(mensaje);
-        return false;
-    }
-    return result;
 }

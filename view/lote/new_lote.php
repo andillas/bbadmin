@@ -77,11 +77,15 @@
                                     <!--**********-->
                                     <!--  MALTAS  -->
                                     <!--**********-->
-
+            <hr>
             <div class="form-group row">
-                    <div class="col-lg-3">
-                        <label>Maltas</label>
+                    <div class="col-lg-5">
+                        <label>Maltas -- </label>
+                    </div>
+                    <div class="col-lg-2">
                         <a class="form-control btn btn-default" style="float: right" onclick="addNewMalta()">Añadir</a>
+                    </div>
+                    <div class="col-lg-2">
                         <a class="form-control btn btn-default" style="float: right" onclick="delNewMalta()">Quitar</a>
                         <input type="hidden" id="total_maltas" name="total_maltas" value="0">
                     </div>
@@ -91,11 +95,14 @@
                                     <!--***********-->
                                     <!--  LÚPULOS  -->
                                     <!--***********-->
-
             <div class="form-group row">
-                <div class="col-lg-1">
-                    <label>Lúpulos</label>
+                <div class="col-lg-5">
+                    <label>Lúpulos -- </label>
+                </div>
+                <div class="col-lg-2">
                     <a class="form-control btn btn-default" style="float: right" onclick="addNewAdicion()">Añadir</a>
+                </div>
+                <div class="col-lg-2">
                     <a class="form-control btn btn-default" style="float: right" onclick="delNewAdicion()">Quitar</a>
                     <input type="hidden" id="total_lupulos" name="total_lupulos" value="0">
                 </div>
@@ -106,12 +113,12 @@
                                 <!--*********************-->
                                 <!--  LEVADURA Y AZÚCAR  -->
                                 <!--*********************-->
-
+            <hr>
             <div class="form-group row">
                     <div class="col-lg-4">
                         <label for="levadura_nuevo_lote">Levadura</label>
                         <select class="form-control" id="levadura_nuevo_lote" name="levadura_nuevo_lote">
-                            <option value="null">Elige levadura</option>
+                            <option value="">Elige levadura</option>
                             <?php
                                 if($all_levaduras){
                                     foreach ($all_levaduras as $leva) {

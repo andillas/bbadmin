@@ -16,7 +16,7 @@ class Output
           "status" => "error",
           "message" => $msg
         ];
-
+        header("content-type: application/json");
         echo json_encode($output);
     }
 
@@ -28,7 +28,7 @@ class Output
             "status" => "ok",
             "content" => $msg
         ];
-
+        header("content-type: application/json");
         echo json_encode($output);
     }
 
@@ -40,7 +40,7 @@ class Output
           "status" => "ok",
           "message" => $msg
         ];
-
+        header("content-type: application/json");
         echo json_encode($output);
     }
 }
