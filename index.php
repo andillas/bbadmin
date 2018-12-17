@@ -1,6 +1,6 @@
 <?php
 //require_once 'model/database.php';
-//require_once 'utils/class.superlog.php';
+//require_once 'core/class.superlog.php';
 
 $controller = 'main';
 

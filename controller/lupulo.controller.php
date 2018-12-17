@@ -1,6 +1,6 @@
 <?php
 require_once 'model/lupulo.model.php';
-include_once 'utils/output.class.php';
+include_once 'core/output.class.php';
 
 class LupuloController
 {
