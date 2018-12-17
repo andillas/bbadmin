@@ -75,7 +75,9 @@ $(document).ready(function(){
    //DOES NOTHING BY NOW;
 });
 
-/*******************LUPULO********************/
+
+
+/*******************LÚPULO********************/
 function saveLupulo(form){
     var nombre = form.nombre_nuevo_lupulo.value;
     var alfaacidos = form.alfaacidos_nuevo_lupulo.value;
@@ -139,8 +141,13 @@ function saveMalta(form){
             ce(err);
         },
         success : function(response){
-            cw(response);
-            return false;
+           if(response.status === 'error'){
+               alert(response.message);
+               return false;
+           }else{
+               window.location.href = '?c=malta';
+               return true;
+           }
         }
     });
 }
@@ -161,18 +168,47 @@ function deleteMalta(id) {
               ce(resperror);
             },
             success : function(response){
-               cl("tutto bene");
-               cw(response);
-               if(response == true){
-                   window.location.href = "?c=malta";
+               if(response.status === 'error'){
+                   alert(response.message);
+                   return false;
                }else{
-                   cl('ha devuelto otra cosa que no es true.');
+                   window.location.href = '?c=malta';
+                   return true;
                }
             }
 
         });
         return false;
     }
+}
+function editMalta(id){
+    window.location.href = '?c=malta&a=editMalta&id_malta=' + id;
+}
+function updateMalta(form){
+    // var id = form.id_editar_malta.value;
+    // var nombre = form.nombre_editar_malta.value;
+    // var tipo = form.tipo_editar_malta.value;
+    // var ebc = form.ebc_editar_malta.value;
+
+    $.ajax({
+       url : '?c=malta&a=saveEditedMalta',
+       method : 'POST',
+       data : $(form).serialize(),
+       error : function(err){
+           ce(err);
+           return false;
+       } ,
+       success : function(response){
+           if(response.status === 'error'){
+               alert(response.message);
+               return false;
+           }else{
+               window.location.href = '?c=malta';
+               return true;
+           }
+       }
+    });
+
 }
 
 /*******************LOTE********************/

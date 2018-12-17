@@ -88,9 +88,25 @@ class Malta
 
             if (!$qy->execute()) throw new Exception($qy->error);
 
-            return $qy->num_rows;
+            return $qy->affected_rows;
         } catch (Exception $e) {
             return $e->getMessage();
+        }
+    }
+
+    public function updateMaltaById($id, $nombre, $tipo, $ebc, $notas){
+        try{
+            Superlog::log('updateMaltaById');
+            $sql = 'UPDATE malta SET nombre_malta = ?, tipo_malta = ?, ebc = ?, notas_malta = ? WHERE id_malta = ?;';
+            if(!$qy = $this->conn->prepare($sql)) throw new Exception($this->conn->error);
+            if(!$qy->bind_param('ssdsi', $nombre, $tipo, $ebc, $notas, $id)) throw new Exception($qy->error);
+            if(!$qy->execute()) throw new Exception($qy->error);
+
+            return $qy->affected_rows;
+
+        }catch(Exception $e){
+            Superlog::log($e->getMessage());
+            return false;
         }
     }
 }//EOC

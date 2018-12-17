@@ -14,6 +14,7 @@
             <th>Lotes</th>
             <th>Comentarios</th>
             <th></th>
+            <th></th>
             </thead>
             <tbody>
             <?php
@@ -24,7 +25,8 @@
                         <td>' . $malta->tipo_malta . '</td>
                         <td><span class="badge">5</span></td>
                         <td>' . $malta->notas_malta . '</td>
-                        <td id="tddelmalta"><button id="botdelmalta" class="btn btn-danger" onclick="deleteMalta(' . $malta->id_malta . ', ' . $malta->id_malta . ')">Eliminar</button></td>
+                        <td id="tdeditmalta"><button id="boteditmalta" class="btn btn-update" onclick="editMalta(' . $malta->id_malta . ')">Editar</button></td>
+                        <td id="tddelmalta"><button id="botdelmalta" class="btn btn-danger" onclick="deleteMalta(' . $malta->id_malta . ')">Eliminar</button></td>
                         ';
                 echo '</tr>';
             }
