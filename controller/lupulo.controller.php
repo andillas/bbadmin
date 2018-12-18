@@ -4,14 +4,14 @@ include_once 'core/output.class.php';
 
 class LupuloController
 {
-    private $model;
+    private $obj_lupulo;
 
     public function __construct(){
-        $this->model = new Lupulo();
+        $this->obj_lupulo = new Lupulo();
     }
 
     public function index(){
-        $all_lupulos = $this->model->getAllLupulos();
+        $all_lupulos = $this->obj_lupulo->getAllLupulos();
 
         require_once 'view/fragments/header.php';
         require_once 'view/lupulo/list_lupulo.php';
@@ -30,7 +30,7 @@ class LupuloController
             if(!$new_lupulo_alfa = filter_input(INPUT_POST, 'alfaacidos', FILTER_VALIDATE_FLOAT))throw new Exception('El valor de alfa ácidos no es válido.');
 
 
-            echo $this->model->saveNewLupulo($new_lupulo_name, $new_lupulo_alfa);
+            echo $this->obj_lupulo->saveNewLupulo($new_lupulo_name, $new_lupulo_alfa);
 
         }catch (Exception $e){
             Output::throwError($e->getMessage());
@@ -40,7 +40,7 @@ class LupuloController
         try{
             $iddel = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-            $result_delete = $this->model->deleteLupuloById($iddel);
+            $result_delete = $this->obj_lupulo->deleteLupuloById($iddel);
             if($result_delete < 1)throw new Exception("No se pudo eliminar el registro.");
 
             Output::throwOk();

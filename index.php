@@ -4,7 +4,7 @@
 
 $controller = 'main';
 
-// Todo esta lógica hara el papel de un FrontController
+// Toda esta lógica hara el papel de un FrontController
 if(!isset($_REQUEST['c']))
 {
     require_once "controller/{$controller}.controller.php";
@@ -27,5 +27,7 @@ else
     // Llama la accion
     $arr = array( $controller, $accion );
 
-    call_user_func( $arr );
+    if(!call_user_func( $arr )){
+        header('location: 404.html');
+    }
 }
