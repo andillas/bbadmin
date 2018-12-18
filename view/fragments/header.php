@@ -9,6 +9,16 @@
     <script src="assets/js/jquery-2.2.4.min.js" language="JavaScript"></script>
     <script src="assets/js/bootstrap.min.js" language="JavaScript"></script>
     <script src="assets/js/js.js" language="JavaScript"></script>
+    <script>
+        $(function(){
+            let params = new URLSearchParams(window.location.search);
+            let controller = params.get('c');
+
+            $("#nav_" + controller).addClass('active');
+        });
+
+
+    </script>
 </head>
 <body>
 <header>
@@ -19,9 +29,9 @@
 
 <nav class="container">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="?c=lote">Lotes</a></li>
-        <li><a href="?c=lupulo">Lúpulos</a></li>
-        <li><a href="?c=malta">Maltas</a></li>
+        <li id="nav_lote"><a href="?c=lote">Lotes</a></li>
+        <li id="nav_lupulo"><a href="?c=lupulo">Lúpulos</a></li>
+        <li id="nav_malta"><a href="?c=malta">Maltas</a></li>
     </ul>
     <!--
     <span class="panel-body">
