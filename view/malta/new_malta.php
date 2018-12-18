@@ -8,7 +8,7 @@
             </div>
             <div class="form-group">
                 <label for="tipo_nueva_malta">Tipo malta</label>
-                <select id="tipo_nueva_malta" name="tipo_nueva_malta">
+                <select id="tipo_nueva_malta" name="tipo_nueva_malta" class="form-control">
                     <option value="null">Selecciona tipo</option>
                     <option value="base">Base</option>
                     <option value="especial">Especial</option>

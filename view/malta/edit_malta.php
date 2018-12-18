@@ -9,7 +9,7 @@
             </div>
             <div class="form-group">
                 <label for="tipo_editar_malta">Tipo malta</label>
-                <select id="tipo_editar_malta" name="tipo_editar_malta">
+                <select id="tipo_editar_malta" name="tipo_editar_malta" class="form-control">
                     <option value="null">Selecciona tipo</option>
                     <?php
                         $tipos = ['base' => 'Base', 'especial' => 'Especial'];

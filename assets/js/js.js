@@ -124,7 +124,10 @@ function deleteLupulo(id) {
         });
         return false;
     }
+}
 
+function editLupulo(id){
+    window.location.href = '?c=lupulo&a=editLupulo&id_lupulo=' + id;
 }
 
 /*******************MALTA********************/
