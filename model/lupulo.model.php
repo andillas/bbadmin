@@ -93,6 +93,22 @@ class Lupulo
             return $e->getMessage();
         }
     }
+
+    public function updateLupuloById($id, $nombre, $alfaacidos, $notas){
+        try{
+            Superlog::log('updateLupuloById');
+            $sql = 'UPDATE lupulo SET nombre_lupulo = ?, alfa_acidos = ?, notas_lupulo = ? WHERE id_lupulo = ?;';
+            if(!$qy = $this->conn->prepare($sql)) throw new Exception($this->conn->error);
+            if(!$qy->bind_param('sdsi', $nombre, $alfaacidos, $notas, $id)) throw new Exception($qy->error);
+            if(!$qy->execute()) throw new Exception($qy->error);
+
+            return $qy->affected_rows;
+
+        }catch(Exception $e){
+            Superlog::log($e->getMessage());
+            return false;
+        }
+    }
     public function usosLupuloByIdLupulo($id_lupulo){
         try{
             $sql = "SELECT COUNT(*) AS total_usos FROM lupulo_x_batch WHERE id_lupulo = ?;";
