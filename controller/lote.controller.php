@@ -76,11 +76,9 @@ class LoteController
             if(!$numero_nuevo_lote = filter_input(INPUT_POST, 'tipo_nuevo_lote', FILTER_VALIDATE_FLOAT))throw new Exception('El valor de alfa ácidos no es válido.');
             if(!$cocinado_nuevo_lote = filter_input(INPUT_POST, 'tipo_nuevo_lote'))throw new Exception('El valor de alfa ácidos no es válido.');
             if(!DateTime::createFromFormat('d-m-Y', $cocinado_nuevo_lote))throw new Exception('Fecha de cocinado no válida.');
-
-            var_dump($nombre_nuevo_lote);
-            var_dump($tipo_nuevo_lote);
 */
-            $lote_formdata = [
+
+$lote_formdata = [
                 "nombre_nuevo_lote" => $_POST['nombre_nuevo_lote'],
                 "tipo_nuevo_lote" => $_POST['tipo_nuevo_lote'],
                 "referencia_nuevo_lote" => $_POST['referencia_nuevo_lote'],

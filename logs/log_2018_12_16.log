@@ -1,0 +1,80 @@
+[2018-12-16 10:13:50] SaveLote
+[2018-12-16 10:13:53] SaveLote
+[2018-12-16 10:15:10] SaveLote
+[2018-12-16 10:15:10] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:15:13] SaveLote
+[2018-12-16 10:15:13] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:21:34] SaveLote
+[2018-12-16 10:21:34] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:23:24] SaveLote
+[2018-12-16 10:23:25] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:25:35] SaveLote
+[2018-12-16 10:25:35] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:30:22] SaveLote
+[2018-12-16 10:30:22] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:31:51] SaveLote
+[2018-12-16 10:31:51] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:33:07] SaveLote
+[2018-12-16 10:33:07] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:33:28] SaveLote
+[2018-12-16 10:33:28] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:33:43] SaveLote
+[2018-12-16 10:33:44] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:34:00] SaveLote
+[2018-12-16 10:34:01] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:34:33] SaveLote
+[2018-12-16 10:34:33] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:34:47] SaveLote
+[2018-12-16 10:34:47] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:35:33] SaveLote
+[2018-12-16 10:35:33] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:35:33] SaveLote
+[2018-12-16 10:35:33] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:35:34] SaveLote
+[2018-12-16 10:35:34] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:35:34] SaveLote
+[2018-12-16 10:35:34] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:35:34] SaveLote
+[2018-12-16 10:35:34] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:35:34] SaveLote
+[2018-12-16 10:35:34] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:37:00] SaveLote
+[2018-12-16 10:37:00] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:37:01] SaveLote
+[2018-12-16 10:37:01] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:37:02] SaveLote
+[2018-12-16 10:37:02] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 10:38:01] SaveLote
+[2018-12-16 10:38:01] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 11:56:56] SaveLote
+[2018-12-16 11:56:56] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 11:57:34] SaveLote
+[2018-12-16 11:57:34] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 11:59:20] SaveLote
+[2018-12-16 11:59:20] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 12:00:15] SaveLote
+[2018-12-16 12:00:16] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 12:00:47] SaveLote
+[2018-12-16 12:00:47] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 12:01:12] SaveLote
+[2018-12-16 12:01:12] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 12:01:51] SaveLote
+[2018-12-16 12:01:51] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 13:13:08] SaveLote
+[2018-12-16 13:13:09] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 13:13:39] SaveLote
+[2018-12-16 13:13:39] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 13:14:51] SaveLote
+[2018-12-16 13:14:51] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 13:15:36] SaveLote
+[2018-12-16 13:15:37] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 13:15:47] SaveLote
+[2018-12-16 13:15:48] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 13:16:03] SaveLote
+[2018-12-16 13:16:03] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 13:16:47] SaveLote
+[2018-12-16 13:16:48] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 13:17:04] SaveLote
+[2018-12-16 13:17:06] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
+[2018-12-16 13:17:12] SaveLote
+[2018-12-16 13:17:12] Cannot add or update a child row: a foreign key constraint fails (`beer_batches`.`lote`, CONSTRAINT `FK_batch_levadura` FOREIGN KEY (`levadura`) REFERENCES `levadura` (`id_levadura`))
