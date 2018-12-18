@@ -125,9 +125,34 @@ function deleteLupulo(id) {
         return false;
     }
 }
-
 function editLupulo(id){
     window.location.href = '?c=lupulo&a=editLupulo&id_lupulo=' + id;
+}
+function updateLupulo(form){
+    // var id = form.id_editar_malta.value;
+    // var nombre = form.nombre_editar_malta.value;
+    // var tipo = form.tipo_editar_malta.value;
+    // var ebc = form.ebc_editar_malta.value;
+
+    $.ajax({
+       url : '?c=lupulo&a=saveEditedLupulo',
+       method : 'POST',
+       data : $(form).serialize(),
+       error : function(err){
+           ce(err);
+           return false;
+       } ,
+       success : function(response){
+           if(response.status === 'error'){
+               alert(response.message);
+               return false;
+           }else{
+               window.location.href = '?c=lupulo';
+               return true;
+           }
+       }
+    });
+
 }
 
 /*******************MALTA********************/

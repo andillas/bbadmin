@@ -51,7 +51,7 @@ class LupuloController
 
     }
 
-    public function editLuplo(){
+    public function editLupulo(){
         try{
             if(!$id_lupulo = filter_input(INPUT_GET, 'id_lupulo', FILTER_VALIDATE_INT)) throw new Exception('El id no es válido.');
             $lupulo_data = $this->obj_lupulo->getLupuloById($id_lupulo);
@@ -69,14 +69,13 @@ class LupuloController
         try{
 
             if(!$id = filter_input(INPUT_POST, 'id_editar_lupulo', FILTER_VALIDATE_INT))throw new Exception('El id no es válido');
-            if(!$nombre = filter_input(INPUT_POST, 'nombre_editar_malta'))throw new Exception('El nombre no es válido');
-            if(!$tipo = filter_input(INPUT_POST, 'tipo_editar_malta'))throw new Exception('El tipo no es válido');
-            if(!$ebc = filter_input(INPUT_POST, 'ebc_editar_malta', FILTER_VALIDATE_FLOAT))throw new Exception('El valor de alfa ácidos no es válido.');
+            if(!$nombre = filter_input(INPUT_POST, 'nombre_editar_lupulo'))throw new Exception('El nombre no es válido');
+            if(!$alfaacidos = filter_input(INPUT_POST, 'alfaacidos_editar_lupulo'))throw new Exception('El tipo no es válido');
             $notas = null;
 
-            $update = $this->obj_malta->updateMaltaById($id, $nombre, $tipo, $ebc, $notas);
+            $update = $this->obj_lupulo->updateLupuloById($id, $nombre, $alfaacidos, $notas);
             if($update < 1){
-                Output::throwError('No ha sido posible actualizar la malta.' . $update);
+                Output::throwError('No ha sido posible actualizar el lúpulo.' . $update);
             }else{
                 Output::throwOk();
             }
