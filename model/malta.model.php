@@ -112,7 +112,7 @@ class Malta
 
     public function numeroUsosById($id_malta){
         try{
-            $sql = "SELECT COUNT(*) AS total FROM malta_x_batch WHERE id_malta = ?;";
+            $sql = "SELECT COUNT(*) AS total FROM malta_x_lote WHERE id_malta = ?;";
             if(!$qy = $this->conn->prepare($sql)) throw new Exception($this->conn->error);
             if(!$qy->bind_param('i', $id_malta)) throw new Exception($qy->error);
             if(!$qy->execute()) throw new Exception($qy->error);
@@ -127,7 +127,7 @@ class Malta
 
     public function cantidadUsadaById($id_malta){
         try{
-            $sql = "SELECT SUM(cantidad) cantidad FROM malta_x_batch WHERE id_malta = ?;";
+            $sql = "SELECT SUM(cantidad) cantidad FROM malta_x_lote WHERE id_malta = ?;";
             if(!$qy = $this->conn->prepare($sql))throw new Exception($this->conn->error);
             if(!$qy->bind_param('i', $id_malta)) throw new Exception($qy->error);
             if(!$qy->execute()) throw new Exception($qy->error);
