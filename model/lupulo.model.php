@@ -111,7 +111,7 @@ class Lupulo
     }
     public function usosLupuloByIdLupulo($id_lupulo){
         try{
-            $sql = "SELECT COUNT(*) AS total_usos FROM lupulo_x_batch WHERE id_lupulo = ?;";
+            $sql = "SELECT COUNT(*) AS total_usos FROM lupulo_x_lote WHERE id_lupulo = ?;";
             if(!$qy = $this->conn->prepare($sql)) throw new Exception($this->conn->error);
             if(!$qy->bind_param('i', $id_lupulo)) throw new Exception($qy->error);
             if(!$qy->execute()) throw new Exception($qy->error);
@@ -125,7 +125,7 @@ class Lupulo
     }
     public function cantidadLupuloByIdLupulo($id_lupulo){
         try{
-            $sql = "SELECT SUM(cantidad) cantidad FROM lupulo_x_batch WHERE id_lupulo = ?;";
+            $sql = "SELECT SUM(cantidad) cantidad FROM lupulo_x_lote WHERE id_lupulo = ?;";
             if(!$qy = $this->conn->prepare($sql))throw new Exception($this->conn->error);
             if(!$qy->bind_param('i', $id_lupulo)) throw new Exception($qy->error);
             if(!$qy->execute()) throw new Exception($qy->error);
