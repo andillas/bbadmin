@@ -38,6 +38,7 @@ class Lupulo
      */
     public function saveNewLupulo($nombre, $aa, $notas = NULL){
         try{
+            Superlog::log(__METHOD__);
             $sql = "INSERT INTO lupulo(nombre_lupulo, alfa_acidos, notas_lupulo) VALUES(?, ?, ?);";
             $qy = $this->conn->prepare($sql);
             $qy->bind_param('sds', $nombre, $aa, $notas);
@@ -45,6 +46,7 @@ class Lupulo
 
             return $this->conn->insert_id;
         }catch (Exception $e){
+            Superlog::log($e->getMessage());
             return $e->getMessage();
         }
     }
@@ -98,7 +100,7 @@ class Lupulo
 
     public function updateLupuloById($id, $nombre, $alfaacidos, $notas){
         try{
-            Superlog::log('updateLupuloById');
+            Superlog::log(__METHOD__);
             $sql = 'UPDATE lupulo SET nombre_lupulo = ?, alfa_acidos = ?, notas_lupulo = ? WHERE id_lupulo = ?;';
             if(!$qy = $this->conn->prepare($sql)) throw new Exception($this->conn->error);
             if(!$qy->bind_param('sdsi', $nombre, $alfaacidos, $notas, $id)) throw new Exception($qy->error);

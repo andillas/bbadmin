@@ -351,3 +351,6 @@ function saveLote(form) {
 
     });
 }
+function editLote(id) {
+    window.location.href = '?c=lote&a=editLote&id_lote=' + id;
+}

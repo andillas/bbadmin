@@ -8,10 +8,10 @@ include_once 'core/superlog.class.php';
 
 class LoteController
 {
-    private $model;
+    private $obj_lote;
 
     public function __construct(){
-        $this->model = new Lote();
+        $this->obj_lote = new Lote();
     }
 
     /**
@@ -19,7 +19,7 @@ class LoteController
      */
     public function index(){
         //all_lotes se usará en list_lote.php
-        $all_lotes = $this->model->getAllLotes();
+        $all_lotes = $this->obj_lote->getAllLotes();
 
         require_once 'view/fragments/header.php';
         require_once 'view/lote/list_lote.php';
@@ -105,12 +105,12 @@ $lote_formdata = [
             $lupulos = $this->getAddedLupulos();
 
             //guardo lote y recupero el id generado para asociarle maltas y lúpulos en malta_x_lote y lupulo_x_lote
-            if(!$id_lote = $this->model->saveLote($lote_formdata))throw new Exception('Se produjo un error en la inserción.');
+            if(!$id_lote = $this->obj_lote->saveLote($lote_formdata))throw new Exception('Se produjo un error en la inserción.');
             if(count($maltas) > 0){
-                if(!$this->model->saveLoteMalta($maltas, $id_lote))Output::throwError('No ha sido posible guardar la malta.');
+                if(!$this->obj_lote->saveLoteMalta($maltas, $id_lote))Output::throwError('No ha sido posible guardar la malta.');
             }
             if(count($lupulos) > 0){
-                if(!$this->model->saveLoteLupulo($lupulos, $id_lote))Output::throwError('No ha sido posible guardarr el lúpulo.');
+                if(!$this->obj_lote->saveLoteLupulo($lupulos, $id_lote))Output::throwError('No ha sido posible guardarr el lúpulo.');
             }
 
             Output::throwOk();
@@ -128,7 +128,7 @@ $lote_formdata = [
         try{
             $iddel = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-            $result_delete = $this->model->deleteLoteById($iddel);
+            $result_delete = $this->obj_lote->deleteLoteById($iddel);
             if($result_delete < 1)throw new Exception("No se pudo eliminar el registro.");
 
             Output::throwOk();
@@ -137,6 +137,37 @@ $lote_formdata = [
             Output::throwError($e->getMessage());
         }
 
+    }
+
+    public function editLote(){
+        try{
+            Superlog::log(__METHOD__);
+            if(!$id_lote = filter_input(INPUT_GET, 'id_lote', FILTER_VALIDATE_INT)) throw new Exception('El id no es válido');
+            $obj_levadura = new Levadura();
+            $obj_lupulo = new Lupulo();
+            $all_levaduras = [];
+            $all_lupulos = [];
+
+            $result_levaduras = $obj_levadura->getAllLevaduras();
+            while ($levadura = $result_levaduras->fetch_object()){
+                $all_levaduras[] = $levadura;
+            }
+
+            $result_lupulos = $obj_lupulo->getAllLupulos();
+            while ($lupulo = $result_lupulos->fetch_object()){
+                $all_lupulos[] = $lupulo;
+            }
+
+            $lote_data = $this->obj_lote->getLoteById($id_lote);
+
+            require_once "view/fragments/header.php";
+            require_once "view/lote/edit_lote.php";
+            require_once "view/fragments/footer.php";
+        }catch (Exception $e){
+            Superlog::log($e->getMessage());
+            Output::throwError($e->getMessage());
+        }
+        exit;
     }
 
     /**
@@ -283,7 +314,7 @@ $lote_formdata = [
             //Recupero todos los lotes y extraigo el más reciente. Lo recorto en lote general, parcial y año.
             //Si ha cambiado de año, reseteo el parcial anual
             $arr_lotes = [];
-            if(!$all_lotes = $this->model->getAllLotes())
+            if(!$all_lotes = $this->obj_lote->getAllLotes())
                 throw new Exception('No ha sido posible recuperar la referencia del lote anterior.');
             while($lote = $all_lotes->fetch_object()){
                 $arr_lotes[] = $lote;
