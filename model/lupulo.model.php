@@ -82,14 +82,16 @@ class Lupulo
     }
     public function deleteLupuloById($id){
         try{
+            Superlog::log(__METHOD__);
             $sql = "DELETE FROM lupulo WHERE id_lupulo = ?;";
             $qy = $this->conn->prepare($sql);
             $qy->bind_param('i', $id);
 
             if(!$qy->execute())throw new Exception($qy->error);
 
-            return $qy->num_rows;
+            return $qy->affected_rows;
         }catch (Exception $e){
+            Superlog::log($e->getMessage());
             return $e->getMessage();
         }
     }

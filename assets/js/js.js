@@ -88,10 +88,18 @@ function saveLupulo(form){
         data : {"nombre" : nombre, "alfaacidos" : alfaacidos},
         error : function(err){
             ce(err);
+            alert(err.message);
+            return false;
         },
         success : function(response){
             cw(response);
-            return false;
+            if(response.status !== 'ok'){
+                alert(response.message);
+                return false;
+            }else{
+                window.location.href = '?c=lupulo';
+                return true;
+            }
         }
     });
 }
@@ -110,19 +118,20 @@ function deleteLupulo(id) {
             error : function(resperror){
               ce("erroraco");
               ce(resperror);
+              return false;
             },
             success : function(response){
-               cl("tutto bene");
                cw(response);
-               if(response == true){
-                   window.location.href = "?c=lupulo";
+               if(response.status !== 'ok'){
+                   alert(response.message);
+                   return false;
                }else{
-                   cl('ha devuelto otra cosa que no es true.');
+                   window.location.href = "?c=lupulo";
+                   return true;
                }
             }
 
         });
-        return false;
     }
 }
 function editLupulo(id){
@@ -140,6 +149,7 @@ function updateLupulo(form){
        data : $(form).serialize(),
        error : function(err){
            ce(err);
+           alert(err.message)
            return false;
        } ,
        success : function(response){
@@ -222,20 +232,32 @@ function updateMalta(form){
        url : '?c=malta&a=saveEditedMalta',
        method : 'POST',
        data : $(form).serialize(),
+        error: function (r_error){
+          ce("ERRORACO!!");
+          ce(r_error);
+          return false;
+        },
+        success : function(response){
+            console.warn(response);
+
+            if(response.status === 'error'){
+                alert(response.message);
+                return false;
+            }else{
+                window.location.href = '?c=malta';
+                return true;
+            }
+        }
+    });
+
+    /*
+    ,
        error : function(err){
+           ce("SUPERERROR!!!");
            ce(err);
            return false;
-       } ,
-       success : function(response){
-           if(response.status === 'error'){
-               alert(response.message);
-               return false;
-           }else{
-               window.location.href = '?c=malta';
-               return true;
-           }
        }
-    });
+    * */
 
 }
 

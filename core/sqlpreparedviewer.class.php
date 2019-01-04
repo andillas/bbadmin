@@ -24,7 +24,7 @@ class SqlPreparedViewer
             $this->sql = substr_replace($this->sql, $param_type, $param_position, 1);
         }
 
-        return $this->sql . chr(10);
+        return $this->sql;// . chr(10)
     }
     private function getFormedParam($param, $type){
         return $type === "s" ? '"' . $param . '"' : $param;

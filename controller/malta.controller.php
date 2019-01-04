@@ -29,7 +29,7 @@ class MaltaController
         try{
             if(!$new_malta_name = filter_input(INPUT_POST, 'nombre'))throw new Exception('El nombre no es válido');
             if(!$new_malta_tipo = filter_input(INPUT_POST, 'tipo'))throw new Exception('El tipo no es válido');
-            if(!$new_malta_ebc = filter_input(INPUT_POST, 'ebc', FILTER_VALIDATE_FLOAT))throw new Exception('El valor de alfa ácidos no es válido.');
+            if(!$new_malta_ebc = filter_input(INPUT_POST, 'ebc', FILTER_VALIDATE_FLOAT))throw new Exception('El valor de EBC no es válido.');
 
             $result = $this->obj_malta->saveNewMalta($new_malta_name, $new_malta_tipo, $new_malta_ebc);
 
@@ -42,6 +42,7 @@ class MaltaController
         }catch (Exception $e){
             Output::throwError($e->getMessage());
         }
+        exit;
     }
     public function deleteMalta($id = null){
         try{
@@ -55,7 +56,7 @@ class MaltaController
         }catch (Exception $e){
             Output::throwError($e->getMessage());
         }
-
+        exit;
     }
 
     public function editMalta(){
@@ -70,10 +71,13 @@ class MaltaController
         }catch(Exception $e){
             Output::throwError($e->getMessage());
         }
+        exit;
     }
 
     public function saveEditedMalta(){
         try{
+
+            Superlog::log('saveEditedMalta_action');
 
             if(!$id = filter_input(INPUT_POST, 'id_editar_malta', FILTER_VALIDATE_INT))throw new Exception('El id no es válido');
             if(!$nombre = filter_input(INPUT_POST, 'nombre_editar_malta'))throw new Exception('El nombre no es válido');
@@ -82,16 +86,17 @@ class MaltaController
             $notas = null;
 
             $update = $this->obj_malta->updateMaltaById($id, $nombre, $tipo, $ebc, $notas);
+
             if($update < 1){
-                Output::throwError('No ha sido posible actualizar la malta.' . $update);
+                throw new Exception('No ha sido posible actualizar la malta.' . $update);
             }else{
                 Output::throwOk();
             }
 
-
         }catch(Exception $e){
             Output::throwError($e->getMessage());
         }
+        exit;
     }
 
 }//EOC

@@ -27,7 +27,7 @@
                 echo '<tr id="row_malta_' . $malta->id_malta . '">';
                 echo   '<td data-name="maltaname">' . $malta->nombre_malta . '</td>
                         <td>' . $malta->ebc . '</td>
-                        <td>' . $malta->tipo_malta . '</td>
+                        <td>' . ucfirst($malta->tipo_malta) . '</td>
                         <td><span class="badge">' . $malta_x_lote->total . '</span></td>
                         <td>' . $cantidad_total->cantidad . '</td>
                         <td>' . $malta->notas_malta . '</td>

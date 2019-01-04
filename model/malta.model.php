@@ -6,6 +6,7 @@
  * Time: 12:56
  */
 require_once 'conn.class.php';
+require_once 'core/sqlpreparedviewer.class.php';
 
 class Malta
 {
@@ -101,6 +102,10 @@ class Malta
             if(!$qy = $this->conn->prepare($sql)) throw new Exception($this->conn->error);
             if(!$qy->bind_param('ssdsi', $nombre, $tipo, $ebc, $notas, $id)) throw new Exception($qy->error);
             if(!$qy->execute()) throw new Exception($qy->error);
+
+//            $pv = new SqlPreparedViewer($sql, 'ssdsi', [$nombre, $tipo, $ebc, $notas, $id]);
+//            $s = $pv->getQuery();
+//            Superlog::log($s);
 
             return $qy->affected_rows;
 
