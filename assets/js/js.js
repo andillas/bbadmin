@@ -262,7 +262,6 @@ function updateMalta(form){
 }
 
 /*******************LOTE********************/
-var maltas = 0;
 function addNewMalta(){
     maltas ++;
     let html = '';
@@ -291,7 +290,6 @@ function delNewMalta() {
     $("#total_maltas").val(maltas)
 
 }
-var adiciones = 0;
 function addNewAdicion(){
     adiciones ++;
     let html = '';

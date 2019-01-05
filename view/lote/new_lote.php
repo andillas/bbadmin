@@ -1,6 +1,9 @@
 <script src="assets/js/bootstrap-datepicker-1.6.4-dist/js/bootstrap-datepicker.js"></script>
 
 <script>
+    var maltas = 0;
+    var adiciones = 0;
+
     $(function() {
         $('#cocinado_nuevo_lote').datepicker({
             format: "yyyy/mm/dd",

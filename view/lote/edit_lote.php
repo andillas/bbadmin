@@ -1,6 +1,9 @@
 <script src="assets/js/bootstrap-datepicker-1.6.4-dist/js/bootstrap-datepicker.js"></script>
 
 <script>
+    var maltas = <?php echo count($maltas_x_lote);?>;
+    var adiciones = <?php echo count($lupulos_x_lote);?>;
+
     $(function() {
         $('#cocinado_nuevo_lote').datepicker({
             format: "yyyy/mm/dd",
@@ -91,7 +94,9 @@
                         <input type="hidden" id="total_maltas" name="total_maltas" value="0">
                     </div>
             </div>
-            <div class="form-group row" id="area_maltas"></div>
+            <div class="form-group row" id="area_maltas">
+                <?php echo $html_maltas; ?>
+            </div>
 
                                     <!--***********-->
                                     <!--  LÚPULOS  -->
@@ -108,7 +113,9 @@
                     <input type="hidden" id="total_lupulos" name="total_lupulos" value="0">
                 </div>
             </div>
-            <div class="form-group row" id="area_lupulos"></div>
+            <div class="form-group row" id="area_lupulos">
+                <?php echo $html_lupulos; ?>
+            </div>
 
 
                                 <!--*********************-->

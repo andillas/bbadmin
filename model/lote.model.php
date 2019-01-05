@@ -163,4 +163,38 @@ class Lote
             return $e->getMessage();
         }
     }
+
+    public function getMaltas_x_Lote($id){
+        try{
+            Superlog::log(__METHOD__);
+            $sql = 'SELECT * FROM malta_x_lote WHERE id_lote = ?';
+            $qy = $this->conn->prepare($sql);
+            $qy->bind_param('i', $id);
+            if(!$qy->execute()) throw new Exception($qy->error);
+
+            return $qy->get_result();
+
+        }catch (Exception $e){
+            Superlog::log($e->getMessage());
+            Output::throwError($e->getMessage());
+            exit;
+        }
+    }
+
+    public function getLupulos_x_Lote($id){
+        try{
+            Superlog::log(__METHOD__);
+            $sql = 'SELECT * FROM lupulo_x_lote WHERE id_lote = ?';
+            $qy = $this->conn->prepare($sql);
+            $qy->bind_param('i', $id);
+            if(!$qy->execute()) throw new Exception($qy->error);
+
+            return $qy->get_result();
+
+        }catch (Exception $e){
+            Superlog::log($e->getMessage());
+            Output::throwError($e->getMessage());
+            exit;
+        }
+    }
 }//EOC

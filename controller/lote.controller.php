@@ -147,6 +147,10 @@ $lote_formdata = [
             $obj_lupulo = new Lupulo();
             $all_levaduras = [];
             $all_lupulos = [];
+            $maltas_x_lote = [];
+            $lupulos_x_lote = [];
+            $html_maltas = '';
+            $html_lupulos = '';
 
             $result_levaduras = $obj_levadura->getAllLevaduras();
             while ($levadura = $result_levaduras->fetch_object()){
@@ -157,6 +161,19 @@ $lote_formdata = [
             while ($lupulo = $result_lupulos->fetch_object()){
                 $all_lupulos[] = $lupulo;
             }
+
+            $result_maltas_lote = $this->obj_lote->getMaltas_x_Lote($id_lote);
+            while ($maltalote = $result_maltas_lote->fetch_object()){
+                $maltas_x_lote[] = $maltalote;
+            }
+
+            $result_lupulos_lote = $this->obj_lote->getLupulos_x_Lote($id_lote);
+            while ($lupulolote = $result_lupulos_lote->fetch_object()){
+                $lupulos_x_lote[] = $lupulolote;
+            }
+
+            $html_maltas = $this->getEditMaltaHtml($maltas_x_lote);
+            $html_lupulos = $this->getEditAdicionHtml($lupulos_x_lote);
 
             $lote_data = $this->obj_lote->getLoteById($id_lote);
 
@@ -216,6 +233,66 @@ $lote_formdata = [
         }
     }
 
+
+
+
+       public function getEditMaltaHtml($maltas){
+        try{
+            //Superlog::log(__METHOD__);
+            $orden = 0;
+            $html_output = '';
+            $all_maltas = [];
+            $obj_malta = new Malta();
+            $result_malta = $obj_malta->getAllMaltas();
+
+            while ($malta = $result_malta->fetch_object()){
+                $all_maltas[] = $malta;
+            }
+
+            foreach ($maltas as $mlt) {
+                $orden ++;
+
+                $html_output .= '
+                    <div id="malta_'.$orden.'">
+                    <div class="col-lg-5">
+                    <label>Nombre Malta '.$orden.'</label>
+                    <select class="form-control" name="malta_'.$orden.'">
+                    <option value="null">Elige Malta</option>';
+
+                if($all_maltas){
+                    foreach ($all_maltas as $malta) {
+                        $sel = $mlt->id_malta === $malta->id_malta ? 'selected' : '';
+                        $html_output .= '<option value="' . $malta->id_malta . '" '.$sel.'>' . $malta->nombre_malta . '</option>';
+                    }
+                }
+
+                $html_output .= '
+                    </select>
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Cantidad (Gramos)</label>
+                        <input type="text" class="form-control" name="cantidad_malta_'.$orden.'" value="'.$mlt->cantidad.'">
+                    </div>
+                    </div>
+                ';
+
+            }
+
+
+            return $html_output;
+
+        }catch (Exception $e){
+            Superlog::log(__METHOD__);
+            Superlog::log($e->getMessage());
+            Output::throwError($e->getMessage());
+        }
+        exit;
+    }
+
+
+
+
+
     /**
      * @return bool
      */
@@ -259,6 +336,59 @@ $lote_formdata = [
             ';
 
             Output::throwContent($html_output);
+
+        }catch (Exception $e){
+            Output::throwError($e->getMessage());
+        }
+    }
+    public function getEditAdicionHtml($lupulos){
+        try{
+            Superlog::log(__METHOD__);
+
+            $orden = 0;
+            $html_output = '';
+            $all_lupulos = [];
+            $obj_lupulo = new Lupulo();
+            $result_lupulo = $obj_lupulo->getAllLupulos();
+
+            while ($lupulo = $result_lupulo->fetch_object()){
+                $all_lupulos[] = $lupulo;
+            }
+
+            foreach ($lupulos as $lpl) {
+
+                $orden ++;
+
+                $html_output .= '
+                    <div id="lupulo_'.$orden.'">
+                    <div class="col-lg-5">
+                    <label>Nombre Lúpulo '.$orden.'</label>
+                    <select class="form-control" name="lupulo_'.$orden.'">
+                    <option value="null">Elige lúpulo</option>';
+
+                if($all_lupulos){
+                    foreach ($all_lupulos as $lupulo) {
+                        $sel = $lpl->id_lupulo === $lupulo->id_lupulo ? 'selected' : '';
+                        $html_output .= '<option value="' . $lupulo->id_lupulo . '" '.$sel.'>' . $lupulo->nombre_lupulo . '</option>';
+                    }
+                }
+
+                $html_output .= '
+                    </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <label>Cantidad (Gramos)</label>
+                        <input type="text" class="form-control" name="cantidad_lupulo_'.$orden.'" value="'.$lpl->cantidad.'">
+                    </div>
+                    <div class="col-lg-2">
+                        <label>Tiempo (Minutos)</label>
+                        <input type="text" class="form-control" name="tiempo_lupulo_'.$orden.'" value="'.$lpl->tiempo.'">
+                    </div>
+                    </div>
+                ';
+            }
+
+            return $html_output;
 
         }catch (Exception $e){
             Output::throwError($e->getMessage());
