@@ -1,0 +1,96 @@
+[2019-01-04 10:06:20] updateLupuloById
+[2019-01-04 10:06:20] updateLupuloById
+[2019-01-04 10:06:59] updateLupuloById
+[2019-01-04 10:06:59] updateLupuloById
+[2019-01-04 10:07:32] updateMaltaById
+[2019-01-04 10:07:32] updateMaltaById
+[2019-01-04 10:09:19] updateMaltaById
+[2019-01-04 10:09:20] updateMaltaById
+[2019-01-04 10:10:37] updateMaltaById
+[2019-01-04 10:10:38] updateMaltaById
+[2019-01-04 10:11:18] updateMaltaById
+[2019-01-04 10:11:18] updateMaltaById
+[2019-01-04 10:11:37] updateMaltaById
+[2019-01-04 10:11:37] updateMaltaById
+[2019-01-04 10:12:18] updateMaltaById
+[2019-01-04 10:12:19] updateMaltaById
+[2019-01-04 10:12:46] updateMaltaById
+[2019-01-04 10:12:46] updateMaltaById
+[2019-01-04 10:16:01] updateMaltaById
+[2019-01-04 10:16:09] updateMaltaById
+[2019-01-04 10:17:44] updateMaltaById
+[2019-01-04 10:18:48] updateMaltaById
+[2019-01-04 10:18:48] updateMaltaById
+[2019-01-04 10:24:34] updateMaltaById
+[2019-01-04 10:24:34] UPDATE malta SET nombre_malta = "MALTA PRUEBAS", tipo_malta = "especial", ebc = 225, notas_malta = "" WHERE id_malta = 21;
+
+[2019-01-04 10:24:34] updateMaltaById
+[2019-01-04 10:24:34] UPDATE malta SET nombre_malta = "MALTA PRUEBAS", tipo_malta = "especial", ebc = 225, notas_malta = "" WHERE id_malta = 21;
+
+[2019-01-04 10:26:09] updateMaltaById
+[2019-01-04 10:26:09] UPDATE malta SET nombre_malta = "MALTA PRUEBAS", tipo_malta = "base", ebc = 225, notas_malta = "" WHERE id_malta = 21;
+[2019-01-04 10:26:09] updateMaltaById
+[2019-01-04 10:26:10] UPDATE malta SET nombre_malta = "MALTA PRUEBAS", tipo_malta = "base", ebc = 225, notas_malta = "" WHERE id_malta = 21;
+[2019-01-04 10:26:15] updateMaltaById
+[2019-01-04 10:26:15] UPDATE malta SET nombre_malta = "MALTA PRUEBAS", tipo_malta = "base", ebc = 225, notas_malta = "" WHERE id_malta = 21;
+[2019-01-04 10:26:15] updateMaltaById
+[2019-01-04 10:26:15] UPDATE malta SET nombre_malta = "MALTA PRUEBAS", tipo_malta = "base", ebc = 225, notas_malta = "" WHERE id_malta = 21;
+[2019-01-04 10:26:21] updateMaltaById
+[2019-01-04 10:26:21] UPDATE malta SET nombre_malta = "MALTA PRUEBAS", tipo_malta = "base", ebc = 225, notas_malta = "" WHERE id_malta = 21;
+[2019-01-04 10:26:21] updateMaltaById
+[2019-01-04 10:26:21] UPDATE malta SET nombre_malta = "MALTA PRUEBAS", tipo_malta = "base", ebc = 225, notas_malta = "" WHERE id_malta = 21;
+[2019-01-04 10:27:46] updateMaltaById
+[2019-01-04 10:27:46] updateMaltaById
+[2019-01-04 10:30:23] saveEditedMalta_action
+[2019-01-04 10:30:23] updateMaltaById
+[2019-01-04 10:30:38] saveEditedMalta_action
+[2019-01-04 10:30:38] updateMaltaById
+[2019-01-04 10:30:38] saveEditedMalta_action
+[2019-01-04 10:30:38] updateMaltaById
+[2019-01-04 10:35:31] saveEditedMalta_action
+[2019-01-04 10:35:31] updateMaltaById
+[2019-01-04 10:36:10] saveEditedMalta_action
+[2019-01-04 10:36:10] updateMaltaById
+[2019-01-04 10:36:49] saveEditedMalta_action
+[2019-01-04 10:36:49] updateMaltaById
+[2019-01-04 10:36:55] saveEditedMalta_action
+[2019-01-04 10:36:55] updateMaltaById
+[2019-01-04 11:15:39] saveEditedMalta_action
+[2019-01-04 11:15:39] updateMaltaById
+[2019-01-04 11:17:20] saveEditedMalta_action
+[2019-01-04 11:17:20] updateMaltaById
+[2019-01-04 11:21:13] saveEditedMalta_action
+[2019-01-04 11:21:13] updateMaltaById
+[2019-01-04 11:23:28] saveEditedMalta_action
+[2019-01-04 11:23:28] updateMaltaById
+[2019-01-04 11:25:55] saveEditedMalta_action
+[2019-01-04 11:25:55] updateMaltaById
+[2019-01-04 11:29:01] saveEditedMalta_action
+[2019-01-04 11:29:01] updateMaltaById
+[2019-01-04 11:29:32] saveEditedMalta_action
+[2019-01-04 11:29:32] updateMaltaById
+[2019-01-04 11:30:08] saveEditedMalta_action
+[2019-01-04 11:30:08] updateMaltaById
+[2019-01-04 11:30:40] updateLupuloById
+[2019-01-04 11:30:54] updateLupuloById
+[2019-01-04 11:32:21] updateLupuloById
+[2019-01-04 11:36:42] updateLupuloById
+[2019-01-04 11:47:28] updateLupuloById
+[2019-01-04 11:53:03] Lupulo::deleteLupuloById
+[2019-01-04 11:56:18] Lupulo::deleteLupuloById
+[2019-01-04 11:56:56] Lupulo::deleteLupuloById
+[2019-01-04 20:40:27] SaveLote
+[2019-01-04 20:40:27] saveLoteMalta
+[2019-01-04 20:52:34] LoteController::editLote
+[2019-01-04 20:55:45] LoteController::editLote
+[2019-01-04 21:00:01] LoteController::editLote
+[2019-01-04 21:01:01] LoteController::editLote
+[2019-01-04 21:05:02] LoteController::editLote
+[2019-01-04 21:05:13] LoteController::editLote
+[2019-01-04 21:07:21] LoteController::editLote
+[2019-01-04 21:07:22] LoteController::editLote
+[2019-01-04 21:07:57] LoteController::editLote
+[2019-01-04 21:08:03] LoteController::editLote
+[2019-01-04 21:11:00] LoteController::editLote
+[2019-01-04 21:13:09] LoteController::editLote
+[2019-01-04 21:13:40] LoteController::editLote
