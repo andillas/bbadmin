@@ -27,7 +27,7 @@ class Lote
     public function saveLote($lote_data)
     {
         try {
-            Superlog::log('SaveLote');
+            Superlog::log(__METHOD__);
             $sql = "INSERT INTO lote(
                  ref_lote,
                  nombre, 
@@ -74,11 +74,77 @@ class Lote
             return false;
         }
     }
-    public function saveLoteMalta($malta, $id_lote){
+    public function updateLote($lote_data){
+        try {
+            Superlog::log(__METHOD__);
+
+            $sql = 'UPDATE lote SET 
+                 ref_lote = ?, 
+                 nombre = ?, 
+                 tipo = ?, 
+                 fecha_cocinado = ?, 
+                 fecha_embotellado = ?, 
+                 densidad_inicial = ?, 
+                 tiempo_hervido = ?, 
+                 agua_macerado = ?, 
+                 agua_lavado = ?, 
+                 levadura = ?, 
+                 azucar = ?, 
+                 densidad_final = ?, 
+                 graduacion = ?, 
+                 atenuacion = ?, 
+                 litros_embotellados = ?, 
+                 ibus = ?, 
+                 incidencias = ?
+                 WHERE id_lote = ?';
+            $qy = $this->conn->prepare($sql);
+            $qy->bind_param('sssssiiiiiiiddddsi',
+                $lote_data['referencia_edited_lote'],
+                $lote_data['nombre_edited_lote'],
+                $lote_data['tipo_edited_lote'],
+                $lote_data['cocinado_edited_lote'],
+                $lote_data['embotellado_edited_lote'],
+                $lote_data['di_edited_lote'],
+                $lote_data['tiempo_hervido_edited_lote'],
+                $lote_data['agua_macerado_edited_lote'],
+                $lote_data['agua_lavado_edited_lote'],
+                $lote_data['levadura_edited_lote'],
+                $lote_data['azucar_edited_lote'],
+                $lote_data['df_edited_lote'],
+                $lote_data['alcohol_edited_lote'],
+                $lote_data['atenuacion_edited_lote'],
+                $lote_data['litros_edited_lote'],
+                $lote_data['ibus_edited_lote'],
+                $lote_data['incidencias_edited_lote'],
+                $lote_data['id_editar_lote']
+                );
+            if (!$qy->execute()) throw new Exception($qy->error);
+
+            return true;
+        } catch (Exception $e) {
+            Superlog::log($e->getMessage());
+            return false;
+        }
+    }
+    public function saveLoteMalta($malta, $id_lote, $update = false){
         try{
             Superlog::log('saveLoteMalta');
             $tipo_malta = '';
             $cantidad_malta = '';
+
+            //Si estoy actualizando lote, primero borro todas las maltas
+            //asociadas a el lote para luego insertar las que llegan ahora
+            if($update){
+                Superlog::log('UPDATING!');
+                $sql_del = 'DELETE FROM malta_x_lote WHERE id_lote = ?;';
+                if(!$qy_del = $this->conn->prepare($sql_del)) throw new Exception($this->conn->error);
+                if(!$qy_del->bind_param('i', $id_lote)) throw new Exception($qy_del->error);
+
+                $pv = new SqlPreparedViewer($sql_del, 'i', [$id_lote]);
+                Superlog::log($pv->getQuery());
+
+                if(!$qy_del->execute()) throw new Exception($qy_del->error);
+            }
 
 
             $sql = "INSERT INTO malta_x_lote(id_lote, id_malta, cantidad) VALUES(?, ?, ?);";
@@ -96,11 +162,26 @@ class Lote
             return false;
         }
     }
-    public function saveLoteLupulo($lupulo, $id_lote){
+    public function saveLoteLupulo($lupulo, $id_lote, $update = false){
         try{
+            Superlog::log(__METHOD__);
             $tipo_lupulo = '';
             $cantidad_lupulo = 0;
             $tiempo_lupulo = 0;
+
+            //Si estoy actualizando lote, primero borro todos los lúpulos
+            //asociados a el lote para luego insertar los que llegan ahora
+            if($update){
+                Superlog::log('UPDATING!');
+                $sql_del = 'DELETE FROM lupulo_x_lote WHERE id_lote = ?;';
+                if(!$qy_del = $this->conn->prepare($sql_del)) throw new Exception($this->conn->error);
+                if(!$qy_del->bind_param('i', $id_lote)) throw new Exception($qy_del->error);
+
+                $pv = new SqlPreparedViewer($sql_del, 'i', [$id_lote]);
+                Superlog::log($pv->getQuery());
+
+                if(!$qy_del->execute()) throw new Exception($qy_del->error);
+            }
 
             $sql = "INSERT INTO lupulo_x_lote(id_lote, id_lupulo, cantidad, tiempo) values(?, ?, ?, ?);";
             if(!$qy = $this->conn->prepare($sql))throw new Exception($this->conn->error);
@@ -115,6 +196,7 @@ class Lote
             }
             return true;
         }catch (Exception $e){
+            Superlog::log($e->getMessage());
             return $e->getMessage();
         }
     }

@@ -349,6 +349,39 @@ function saveLote(form) {
 
     });
 }
+function saveEditedLote(form) {
+
+    //VALIDACION DE CAMPOS REQUERIDOS
+    if(!validateField('nombre_edited_lote', 'REQUIRED'))return alert('El nombre es obligatorio.');
+    if(!validateField('referencia_edited_lote', 'REQUIRED'))return alert('La referencia es obligatoria.');
+    if(!validateField('cocinado_edited_lote', 'REQUIRED'))return alert('La fecha de cocinado es obligatoria.');
+    if(!validateField('agua_macerado_edited_lote', 'REQUIRED'))return alert('El agua de macerado es obligatorio.');
+    if(!validateField('agua_lavado_edited_lote', 'REQUIRED'))return alert('El agua de lavado es obligatorio.');
+    if(!validateField('total_maltas', 'MIN', 1))return alert('Al menos hay que aportar una malta.');
+    if(!validateField('levadura_edited_lote', 'REQUIRED'))return alert('Hay que seleccionar la levadura.');
+
+    let elform = $(form).serialize();
+
+    $.ajax({
+       url : "?c=lote&a=updateLote",
+       method : "post",
+       data : elform,
+        error : function (error) {
+            ce(error);
+            return false;
+        },
+        success : function (response) {
+           cl(response);
+           if(response.status !== "ok"){
+               alert(response.message);
+           }else{
+               window.location.href = '?c=lote';
+           }
+            return false;
+        }
+
+    });
+}
 function editLote(id) {
     window.location.href = '?c=lote&a=editLote&id_lote=' + id;
 }

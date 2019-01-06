@@ -119,6 +119,52 @@ $lote_formdata = [
             Output::throwError($e->getMessage());
         }
     }
+    public function updateLote(){
+        try{
+            Superlog::log(__METHOD__);
+            $lote_formdata = [
+                "nombre_edited_lote" => $_POST['nombre_edited_lote'],
+                "tipo_edited_lote" => $_POST['tipo_edited_lote'],
+                "referencia_edited_lote" => $_POST['referencia_edited_lote'],
+                "cocinado_edited_lote" => $_POST['cocinado_edited_lote'],
+                "embotellado_edited_lote" => $_POST['embotellado_edited_lote'],
+                "agua_macerado_edited_lote" => $_POST['agua_macerado_edited_lote'],
+                "agua_lavado_edited_lote" => $_POST['agua_lavado_edited_lote'],
+                "tiempo_hervido_edited_lote" => $_POST['tiempo_hervido_edited_lote'],
+                "total_maltas" => $_POST['total_maltas'],
+                "total_lupulos" => $_POST['total_lupulos'],
+                "levadura_edited_lote" => $_POST['levadura_edited_lote'],
+                "azucar_edited_lote" => $_POST['azucar_edited_lote'],
+                "di_edited_lote" => $_POST['di_edited_lote'],
+                "df_edited_lote" => $_POST['df_edited_lote'],
+                "litros_edited_lote" => $_POST['litros_edited_lote'],
+                "alcohol_edited_lote" => $_POST['alcohol_edited_lote'],
+                "atenuacion_edited_lote" => $_POST['atenuacion_edited_lote'],
+                "ibus_edited_lote" => $_POST['ibus_edited_lote'],
+                "incidencias_edited_lote" => $_POST['incidencias_edited_lote'],
+                "id_editar_lote" => $_POST['id_editar_lote'],
+            ];
+
+            //genero objetos con las maltas y los lúpulos para guardarlos
+            $maltas = $this->getAddedMaltas();
+            $lupulos = $this->getAddedLupulos();
+
+            //guardo lote y recupero el id generado para asociarle maltas y lúpulos en malta_x_lote y lupulo_x_lote
+            if(!$this->obj_lote->updateLote($lote_formdata))throw new Exception('Se produjo un error en la edición.');
+            if(count($maltas) > 0){
+                if(!$this->obj_lote->saveLoteMalta($maltas, $_POST['id_editar_lote'], true))Output::throwError('No ha sido posible guardar la malta.');
+            }
+            if(count($lupulos) > 0){
+                if(!$this->obj_lote->saveLoteLupulo($lupulos, $_POST['id_editar_lote'], true))Output::throwError('No ha sido posible guardarr el lúpulo.');
+            }
+
+            Output::throwOk();
+
+        }catch (Exception $e){
+            Superlog::log($e->getMessage());
+            Output::throwError($e->getMessage());
+        }
+    }
 
     /**
      * Elimina el lote con el id dado
@@ -236,7 +282,7 @@ $lote_formdata = [
 
 
 
-       public function getEditMaltaHtml($maltas){
+    public function getEditMaltaHtml($maltas){
         try{
             //Superlog::log(__METHOD__);
             $orden = 0;
