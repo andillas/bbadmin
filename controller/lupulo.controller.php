@@ -16,11 +16,13 @@ class LupuloController
         require_once 'view/fragments/header.php';
         require_once 'view/lupulo/list_lupulo.php';
         require_once 'view/fragments/footer.php';
+        exit;
     }
     public function newLupulo(){
         require_once 'view/fragments/header.php';
         require_once 'view/lupulo/new_lupulo.php';
         require_once 'view/fragments/footer.php';
+        exit;
     }
     public function saveLupulo(){
 //        $new_lupulo_data = filter_input_array(INPUT_POST, )
@@ -29,12 +31,17 @@ class LupuloController
             if(!$new_lupulo_name = filter_input(INPUT_POST, 'nombre'))throw new Exception('El nombre no es válido');
             if(!$new_lupulo_alfa = filter_input(INPUT_POST, 'alfaacidos', FILTER_VALIDATE_FLOAT))throw new Exception('El valor de alfa ácidos no es válido.');
 
-
-            echo $this->obj_lupulo->saveNewLupulo($new_lupulo_name, $new_lupulo_alfa);
+            $last_id = $this->obj_lupulo->saveNewLupulo($new_lupulo_name, $new_lupulo_alfa);
+            if(!$last_id > 0){
+                throw new Exception("Ocurrió un error en la inserción.");
+            }else{
+                Output::throwContent($last_id);
+            }
 
         }catch (Exception $e){
             Output::throwError($e->getMessage());
         }
+        exit;
     }
     public function deleteLupulo($id = null){
         try{
@@ -48,7 +55,7 @@ class LupuloController
         }catch (Exception $e){
             Output::throwError($e->getMessage());
         }
-
+        exit;
     }
 
     public function editLupulo(){
@@ -63,6 +70,7 @@ class LupuloController
         }catch(Exception $e){
             Output::throwError($e->getMessage());
         }
+        exit;
     }
 
     public function saveEditedLupulo(){
@@ -70,7 +78,7 @@ class LupuloController
 
             if(!$id = filter_input(INPUT_POST, 'id_editar_lupulo', FILTER_VALIDATE_INT))throw new Exception('El id no es válido');
             if(!$nombre = filter_input(INPUT_POST, 'nombre_editar_lupulo'))throw new Exception('El nombre no es válido');
-            if(!$alfaacidos = filter_input(INPUT_POST, 'alfaacidos_editar_lupulo'))throw new Exception('El tipo no es válido');
+            if(!$alfaacidos = filter_input(INPUT_POST, 'alfaacidos_editar_lupulo'))throw new Exception('El valor de Alfa Ácidos no es válido');
             $notas = null;
 
             $update = $this->obj_lupulo->updateLupuloById($id, $nombre, $alfaacidos, $notas);
@@ -79,10 +87,9 @@ class LupuloController
             }else{
                 Output::throwOk();
             }
-
-
         }catch(Exception $e){
             Output::throwError($e->getMessage());
         }
+        exit;
     }
 }

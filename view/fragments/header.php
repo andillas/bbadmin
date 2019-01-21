@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <meta name="description" content="Gestor de lotes">
 <head>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <script src="assets/js/jquery-2.2.4.min.js" language="JavaScript"></script>
     <script src="assets/js/bootstrap.min.js" language="JavaScript"></script>
     <script src="assets/js/js.js" language="JavaScript"></script>
@@ -19,6 +18,8 @@
 
 
     </script>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
 <header>

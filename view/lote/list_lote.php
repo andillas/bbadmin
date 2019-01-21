@@ -22,7 +22,8 @@
                         <td>' . $lote->tipo . '</td>
                         <td>' . $lote->fecha_cocinado . '</td>
                         <td>' . $lote->graduacion . '</td>
-                        <td id="tddellote"><button id="botdellote" class="btn btn-danger" onclick="deleteLupulo(' . $lote->id_lote . ', ' . $lote->id_lote . ')">Eliminar</button></td>
+                        <td id="tdeditlote"><button id="boteditlote" class="btn btn-warning" onclick="editLote(' . $lote->id_lote . ')">Editar</button></td>
+                        <td id="tddellote"><button id="botdellote" class="btn btn-danger" onclick="deleteLote(' . $lote->id_lote . ')">Eliminar</button></td>
                         ';
                 echo '</tr>';
             }

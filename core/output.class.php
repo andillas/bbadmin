@@ -18,6 +18,7 @@ class Output
         ];
         header("content-type: application/json");
         echo json_encode($output);
+        exit;
     }
 
     /**
@@ -30,6 +31,7 @@ class Output
         ];
         header("content-type: application/json");
         echo json_encode($output);
+        exit;
     }
 
     /**
@@ -42,5 +44,6 @@ class Output
         ];
         header("content-type: application/json");
         echo json_encode($output);
+        exit;
     }
 }

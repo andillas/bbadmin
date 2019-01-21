@@ -8,10 +8,10 @@ include_once 'core/superlog.class.php';
 
 class LoteController
 {
-    private $model;
+    private $obj_lote;
 
     public function __construct(){
-        $this->model = new Lote();
+        $this->obj_lote = new Lote();
     }
 
     /**
@@ -19,7 +19,7 @@ class LoteController
      */
     public function index(){
         //all_lotes se usará en list_lote.php
-        $all_lotes = $this->model->getAllLotes();
+        $all_lotes = $this->obj_lote->getAllLotes();
 
         require_once 'view/fragments/header.php';
         require_once 'view/lote/list_lote.php';
@@ -105,17 +105,63 @@ $lote_formdata = [
             $lupulos = $this->getAddedLupulos();
 
             //guardo lote y recupero el id generado para asociarle maltas y lúpulos en malta_x_lote y lupulo_x_lote
-            if(!$id_lote = $this->model->saveLote($lote_formdata))throw new Exception('Se produjo un error en la inserción.');
+            if(!$id_lote = $this->obj_lote->saveLote($lote_formdata))throw new Exception('Se produjo un error en la inserción.');
             if(count($maltas) > 0){
-                if(!$this->model->saveLoteMalta($maltas, $id_lote))Output::throwError('No ha sido posible guardar la malta.');
+                if(!$this->obj_lote->saveLoteMalta($maltas, $id_lote))Output::throwError('No ha sido posible guardar la malta.');
             }
             if(count($lupulos) > 0){
-                if(!$this->model->saveLoteLupulo($lupulos, $id_lote))Output::throwError('No ha sido posible guardarr el lúpulo.');
+                if(!$this->obj_lote->saveLoteLupulo($lupulos, $id_lote))Output::throwError('No ha sido posible guardarr el lúpulo.');
             }
 
             Output::throwOk();
 
         }catch (Exception $e){
+            Output::throwError($e->getMessage());
+        }
+    }
+    public function updateLote(){
+        try{
+            Superlog::log(__METHOD__);
+            $lote_formdata = [
+                "nombre_edited_lote" => $_POST['nombre_edited_lote'],
+                "tipo_edited_lote" => $_POST['tipo_edited_lote'],
+                "referencia_edited_lote" => $_POST['referencia_edited_lote'],
+                "cocinado_edited_lote" => $_POST['cocinado_edited_lote'],
+                "embotellado_edited_lote" => $_POST['embotellado_edited_lote'],
+                "agua_macerado_edited_lote" => $_POST['agua_macerado_edited_lote'],
+                "agua_lavado_edited_lote" => $_POST['agua_lavado_edited_lote'],
+                "tiempo_hervido_edited_lote" => $_POST['tiempo_hervido_edited_lote'],
+                "total_maltas" => $_POST['total_maltas'],
+                "total_lupulos" => $_POST['total_lupulos'],
+                "levadura_edited_lote" => $_POST['levadura_edited_lote'],
+                "azucar_edited_lote" => $_POST['azucar_edited_lote'],
+                "di_edited_lote" => $_POST['di_edited_lote'],
+                "df_edited_lote" => $_POST['df_edited_lote'],
+                "litros_edited_lote" => $_POST['litros_edited_lote'],
+                "alcohol_edited_lote" => $_POST['alcohol_edited_lote'],
+                "atenuacion_edited_lote" => $_POST['atenuacion_edited_lote'],
+                "ibus_edited_lote" => $_POST['ibus_edited_lote'],
+                "incidencias_edited_lote" => $_POST['incidencias_edited_lote'],
+                "id_editar_lote" => $_POST['id_editar_lote'],
+            ];
+
+            //genero objetos con las maltas y los lúpulos para guardarlos
+            $maltas = $this->getAddedMaltas();
+            $lupulos = $this->getAddedLupulos();
+
+            //guardo lote y recupero el id generado para asociarle maltas y lúpulos en malta_x_lote y lupulo_x_lote
+            if(!$this->obj_lote->updateLote($lote_formdata))throw new Exception('Se produjo un error en la edición.');
+            if(count($maltas) > 0){
+                if(!$this->obj_lote->saveLoteMalta($maltas, $_POST['id_editar_lote'], true))Output::throwError('No ha sido posible guardar la malta.');
+            }
+            if(count($lupulos) > 0){
+                if(!$this->obj_lote->saveLoteLupulo($lupulos, $_POST['id_editar_lote'], true))Output::throwError('No ha sido posible guardarr el lúpulo.');
+            }
+
+            Output::throwOk();
+
+        }catch (Exception $e){
+            Superlog::log($e->getMessage());
             Output::throwError($e->getMessage());
         }
     }
@@ -128,7 +174,7 @@ $lote_formdata = [
         try{
             $iddel = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-            $result_delete = $this->model->deleteLoteById($iddel);
+            $result_delete = $this->obj_lote->deleteLoteById($iddel);
             if($result_delete < 1)throw new Exception("No se pudo eliminar el registro.");
 
             Output::throwOk();
@@ -137,6 +183,54 @@ $lote_formdata = [
             Output::throwError($e->getMessage());
         }
 
+    }
+
+    public function editLote(){
+        try{
+            Superlog::log(__METHOD__);
+            if(!$id_lote = filter_input(INPUT_GET, 'id_lote', FILTER_VALIDATE_INT)) throw new Exception('El id no es válido');
+            $obj_levadura = new Levadura();
+            $obj_lupulo = new Lupulo();
+            $all_levaduras = [];
+            $all_lupulos = [];
+            $maltas_x_lote = [];
+            $lupulos_x_lote = [];
+            $html_maltas = '';
+            $html_lupulos = '';
+
+            $result_levaduras = $obj_levadura->getAllLevaduras();
+            while ($levadura = $result_levaduras->fetch_object()){
+                $all_levaduras[] = $levadura;
+            }
+
+            $result_lupulos = $obj_lupulo->getAllLupulos();
+            while ($lupulo = $result_lupulos->fetch_object()){
+                $all_lupulos[] = $lupulo;
+            }
+
+            $result_maltas_lote = $this->obj_lote->getMaltas_x_Lote($id_lote);
+            while ($maltalote = $result_maltas_lote->fetch_object()){
+                $maltas_x_lote[] = $maltalote;
+            }
+
+            $result_lupulos_lote = $this->obj_lote->getLupulos_x_Lote($id_lote);
+            while ($lupulolote = $result_lupulos_lote->fetch_object()){
+                $lupulos_x_lote[] = $lupulolote;
+            }
+
+            $html_maltas = $this->getEditMaltaHtml($maltas_x_lote);
+            $html_lupulos = $this->getEditAdicionHtml($lupulos_x_lote);
+
+            $lote_data = $this->obj_lote->getLoteById($id_lote);
+
+            require_once "view/fragments/header.php";
+            require_once "view/lote/edit_lote.php";
+            require_once "view/fragments/footer.php";
+        }catch (Exception $e){
+            Superlog::log($e->getMessage());
+            Output::throwError($e->getMessage());
+        }
+        exit;
     }
 
     /**
@@ -185,6 +279,66 @@ $lote_formdata = [
         }
     }
 
+
+
+
+    public function getEditMaltaHtml($maltas){
+        try{
+            //Superlog::log(__METHOD__);
+            $orden = 0;
+            $html_output = '';
+            $all_maltas = [];
+            $obj_malta = new Malta();
+            $result_malta = $obj_malta->getAllMaltas();
+
+            while ($malta = $result_malta->fetch_object()){
+                $all_maltas[] = $malta;
+            }
+
+            foreach ($maltas as $mlt) {
+                $orden ++;
+
+                $html_output .= '
+                    <div id="malta_'.$orden.'">
+                    <div class="col-lg-5">
+                    <label>Nombre Malta '.$orden.'</label>
+                    <select class="form-control" name="malta_'.$orden.'">
+                    <option value="null">Elige Malta</option>';
+
+                if($all_maltas){
+                    foreach ($all_maltas as $malta) {
+                        $sel = $mlt->id_malta === $malta->id_malta ? 'selected' : '';
+                        $html_output .= '<option value="' . $malta->id_malta . '" '.$sel.'>' . $malta->nombre_malta . '</option>';
+                    }
+                }
+
+                $html_output .= '
+                    </select>
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Cantidad (Gramos)</label>
+                        <input type="text" class="form-control" name="cantidad_malta_'.$orden.'" value="'.$mlt->cantidad.'">
+                    </div>
+                    </div>
+                ';
+
+            }
+
+
+            return $html_output;
+
+        }catch (Exception $e){
+            Superlog::log(__METHOD__);
+            Superlog::log($e->getMessage());
+            Output::throwError($e->getMessage());
+        }
+        exit;
+    }
+
+
+
+
+
     /**
      * @return bool
      */
@@ -228,6 +382,59 @@ $lote_formdata = [
             ';
 
             Output::throwContent($html_output);
+
+        }catch (Exception $e){
+            Output::throwError($e->getMessage());
+        }
+    }
+    public function getEditAdicionHtml($lupulos){
+        try{
+            Superlog::log(__METHOD__);
+
+            $orden = 0;
+            $html_output = '';
+            $all_lupulos = [];
+            $obj_lupulo = new Lupulo();
+            $result_lupulo = $obj_lupulo->getAllLupulos();
+
+            while ($lupulo = $result_lupulo->fetch_object()){
+                $all_lupulos[] = $lupulo;
+            }
+
+            foreach ($lupulos as $lpl) {
+
+                $orden ++;
+
+                $html_output .= '
+                    <div id="lupulo_'.$orden.'">
+                    <div class="col-lg-5">
+                    <label>Nombre Lúpulo '.$orden.'</label>
+                    <select class="form-control" name="lupulo_'.$orden.'">
+                    <option value="null">Elige lúpulo</option>';
+
+                if($all_lupulos){
+                    foreach ($all_lupulos as $lupulo) {
+                        $sel = $lpl->id_lupulo === $lupulo->id_lupulo ? 'selected' : '';
+                        $html_output .= '<option value="' . $lupulo->id_lupulo . '" '.$sel.'>' . $lupulo->nombre_lupulo . '</option>';
+                    }
+                }
+
+                $html_output .= '
+                    </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <label>Cantidad (Gramos)</label>
+                        <input type="text" class="form-control" name="cantidad_lupulo_'.$orden.'" value="'.$lpl->cantidad.'">
+                    </div>
+                    <div class="col-lg-2">
+                        <label>Tiempo (Minutos)</label>
+                        <input type="text" class="form-control" name="tiempo_lupulo_'.$orden.'" value="'.$lpl->tiempo.'">
+                    </div>
+                    </div>
+                ';
+            }
+
+            return $html_output;
 
         }catch (Exception $e){
             Output::throwError($e->getMessage());
@@ -283,7 +490,7 @@ $lote_formdata = [
             //Recupero todos los lotes y extraigo el más reciente. Lo recorto en lote general, parcial y año.
             //Si ha cambiado de año, reseteo el parcial anual
             $arr_lotes = [];
-            if(!$all_lotes = $this->model->getAllLotes())
+            if(!$all_lotes = $this->obj_lote->getAllLotes())
                 throw new Exception('No ha sido posible recuperar la referencia del lote anterior.');
             while($lote = $all_lotes->fetch_object()){
                 $arr_lotes[] = $lote;

@@ -97,3 +97,31 @@ body {
     height: 86px;
   }
 }
+
+fieldset {
+  margin-top: 45px;
+  display: block;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 2em;
+  padding-right: 2em;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+.botonera{
+    margin-top: 45px;
+}
+.multicolumn{
+    background-color: cornflowerblue;
+  display: block;
+  margin-left: 2px;
+  padding-left: 2em;
+
+}
+.right{
+    float: right;
+}

@@ -88,10 +88,18 @@ function saveLupulo(form){
         data : {"nombre" : nombre, "alfaacidos" : alfaacidos},
         error : function(err){
             ce(err);
+            alert(err.message);
+            return false;
         },
         success : function(response){
             cw(response);
-            return false;
+            if(response.status !== 'ok'){
+                alert(response.message);
+                return false;
+            }else{
+                window.location.href = '?c=lupulo';
+                return true;
+            }
         }
     });
 }
@@ -110,19 +118,20 @@ function deleteLupulo(id) {
             error : function(resperror){
               ce("erroraco");
               ce(resperror);
+              return false;
             },
             success : function(response){
-               cl("tutto bene");
                cw(response);
-               if(response == true){
-                   window.location.href = "?c=lupulo";
+               if(response.status !== 'ok'){
+                   alert(response.message);
+                   return false;
                }else{
-                   cl('ha devuelto otra cosa que no es true.');
+                   window.location.href = "?c=lupulo";
+                   return true;
                }
             }
 
         });
-        return false;
     }
 }
 function editLupulo(id){
@@ -140,6 +149,7 @@ function updateLupulo(form){
        data : $(form).serialize(),
        error : function(err){
            ce(err);
+           alert(err.message)
            return false;
        } ,
        success : function(response){
@@ -222,25 +232,36 @@ function updateMalta(form){
        url : '?c=malta&a=saveEditedMalta',
        method : 'POST',
        data : $(form).serialize(),
+        error: function (r_error){
+          ce("ERRORACO!!");
+          ce(r_error);
+          return false;
+        },
+        success : function(response){
+            console.warn(response);
+
+            if(response.status === 'error'){
+                alert(response.message);
+                return false;
+            }else{
+                window.location.href = '?c=malta';
+                return true;
+            }
+        }
+    });
+
+    /*
+    ,
        error : function(err){
+           ce("SUPERERROR!!!");
            ce(err);
            return false;
-       } ,
-       success : function(response){
-           if(response.status === 'error'){
-               alert(response.message);
-               return false;
-           }else{
-               window.location.href = '?c=malta';
-               return true;
-           }
        }
-    });
+    * */
 
 }
 
 /*******************LOTE********************/
-var maltas = 0;
 function addNewMalta(){
     maltas ++;
     let html = '';
@@ -269,7 +290,6 @@ function delNewMalta() {
     $("#total_maltas").val(maltas)
 
 }
-var adiciones = 0;
 function addNewAdicion(){
     adiciones ++;
     let html = '';
@@ -328,4 +348,40 @@ function saveLote(form) {
         }
 
     });
+}
+function saveEditedLote(form) {
+
+    //VALIDACION DE CAMPOS REQUERIDOS
+    if(!validateField('nombre_edited_lote', 'REQUIRED'))return alert('El nombre es obligatorio.');
+    if(!validateField('referencia_edited_lote', 'REQUIRED'))return alert('La referencia es obligatoria.');
+    if(!validateField('cocinado_edited_lote', 'REQUIRED'))return alert('La fecha de cocinado es obligatoria.');
+    if(!validateField('agua_macerado_edited_lote', 'REQUIRED'))return alert('El agua de macerado es obligatorio.');
+    if(!validateField('agua_lavado_edited_lote', 'REQUIRED'))return alert('El agua de lavado es obligatorio.');
+    if(!validateField('total_maltas', 'MIN', 1))return alert('Al menos hay que aportar una malta.');
+    if(!validateField('levadura_edited_lote', 'REQUIRED'))return alert('Hay que seleccionar la levadura.');
+
+    let elform = $(form).serialize();
+
+    $.ajax({
+       url : "?c=lote&a=updateLote",
+       method : "post",
+       data : elform,
+        error : function (error) {
+            ce(error);
+            return false;
+        },
+        success : function (response) {
+           cl(response);
+           if(response.status !== "ok"){
+               alert(response.message);
+           }else{
+               window.location.href = '?c=lote';
+           }
+            return false;
+        }
+
+    });
+}
+function editLote(id) {
+    window.location.href = '?c=lote&a=editLote&id_lote=' + id;
 }
