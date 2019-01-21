@@ -35,7 +35,7 @@
                                     <!-- DATOS LOTE -->
                                     <!--************-->
             <fieldset>
-                <legend>Datos de cocinado</legend>
+                <legend>Datos cocinado</legend>
                 <div class="form-group row">
                         <div class="col-lg-5">
                             <label for="nombre_edited_lote">Nombre</label>
