@@ -1,8 +1,10 @@
 <script src="assets/js/bootstrap-datepicker-1.6.4-dist/js/bootstrap-datepicker.js"></script>
 
 <script>
-    var maltas = <?php echo count($maltas_x_lote);?>;
-    var adiciones = <?php echo count($lupulos_x_lote);?>;
+    var maltas = 0;
+    maltas = <?php echo count($maltas_x_lote);?>;
+    var adiciones = 0;
+    adiciones = <?php echo count($lupulos_x_lote);?>;
 
     $(function() {
         $('#cocinado_edited_lote').datepicker({
@@ -33,7 +35,7 @@
                                     <!-- DATOS LOTE -->
                                     <!--************-->
             <fieldset>
-                <legend>Datos cocinado</legend>
+                <legend>Datos de cocinado</legend>
                 <div class="form-group row">
                         <div class="col-lg-5">
                             <label for="nombre_edited_lote">Nombre</label>
