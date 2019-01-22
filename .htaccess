@@ -1,0 +1,5 @@
+RewriteEngine on
+
+RewriteRule ^(\w+)$ index.php?c=$1 [L]
+RewriteRule ^(\w+)/(\w+)$ index.php?c=$1&a=$2 [L]
+RewriteRule ^(\w+)/(\w+)/(\w+)$ index.php?c=$1&a=$2&id=$3 [L]
