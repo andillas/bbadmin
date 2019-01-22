@@ -188,7 +188,7 @@
 
             <div class="form-group botonera">
                 <button type="button" class="btn btn-default" onclick="saveLote(this.form)">Guardar</button>
-                <button type="button" class="btn btn-checkout" onclick="window.location.href='?c=lote'">Cancelar</button>
+                <button type="button" class="btn btn-checkout" onclick="window.location.href='./lote'">Cancelar</button>
             </div>
         </form>
     </article>

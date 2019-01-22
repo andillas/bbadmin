@@ -61,7 +61,7 @@ class MaltaController
 
     public function editMalta(){
         try{
-            if(!$id_malta = filter_input(INPUT_GET, 'id_malta', FILTER_VALIDATE_INT)) throw new Exception('El id no es válido.');
+            if(!$id_malta = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT)) throw new Exception('El id no es válido.');
             $malta_data = $this->obj_malta->getMaltaById($id_malta);
 
             require_once "view/fragments/header.php";
@@ -82,7 +82,7 @@ class MaltaController
             if(!$id = filter_input(INPUT_POST, 'id_editar_malta', FILTER_VALIDATE_INT))throw new Exception('El id no es válido');
             if(!$nombre = filter_input(INPUT_POST, 'nombre_editar_malta'))throw new Exception('El nombre no es válido');
             if(!$tipo = filter_input(INPUT_POST, 'tipo_editar_malta'))throw new Exception('El tipo no es válido');
-            if(!$ebc = filter_input(INPUT_POST, 'ebc_editar_malta', FILTER_VALIDATE_FLOAT))throw new Exception('El valor de alfa ácidos no es válido.');
+            if(!$ebc = filter_input(INPUT_POST, 'ebc_editar_malta', FILTER_VALIDATE_INT))throw new Exception('El valor de alfa ácidos no es válido.');
             $notas = null;
 
             $update = $this->obj_malta->updateMaltaById($id, $nombre, $tipo, $ebc, $notas);

@@ -8,8 +8,14 @@ include_once 'core/superlog.class.php';
 
 class LoteController
 {
+    /**
+     * @var Lote
+     */
     private $obj_lote;
 
+    /**
+     * LoteController constructor.
+     */
     public function __construct(){
         $this->obj_lote = new Lote();
     }
@@ -78,7 +84,7 @@ class LoteController
             if(!DateTime::createFromFormat('d-m-Y', $cocinado_nuevo_lote))throw new Exception('Fecha de cocinado no válida.');
 */
 
-$lote_formdata = [
+            $lote_formdata = [
                 "nombre_nuevo_lote" => $_POST['nombre_nuevo_lote'],
                 "tipo_nuevo_lote" => $_POST['tipo_nuevo_lote'],
                 "referencia_nuevo_lote" => $_POST['referencia_nuevo_lote'],
@@ -119,6 +125,10 @@ $lote_formdata = [
             Output::throwError($e->getMessage());
         }
     }
+
+    /**
+     *
+     */
     public function updateLote(){
         try{
             Superlog::log(__METHOD__);
@@ -175,7 +185,7 @@ $lote_formdata = [
             $iddel = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
             $result_delete = $this->obj_lote->deleteLoteById($iddel);
-            if($result_delete < 1)throw new Exception("No se pudo eliminar el registro.");
+            if(!$result_delete)throw new Exception("No se pudo eliminar el registro.");
 
             Output::throwOk();
 
@@ -185,10 +195,13 @@ $lote_formdata = [
 
     }
 
+    /**
+     *
+     */
     public function editLote(){
         try{
             Superlog::log(__METHOD__);
-            if(!$id_lote = filter_input(INPUT_GET, 'id_lote', FILTER_VALIDATE_INT)) throw new Exception('El id no es válido');
+            if(!$id_lote = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT)) throw new Exception('El id no es válido');
             $obj_levadura = new Levadura();
             $obj_lupulo = new Lupulo();
             $all_levaduras = [];
@@ -280,8 +293,10 @@ $lote_formdata = [
     }
 
 
-
-
+    /**
+     * @param array $maltas
+     * @return string
+     */
     public function getEditMaltaHtml($maltas){
         try{
             //Superlog::log(__METHOD__);
@@ -387,6 +402,11 @@ $lote_formdata = [
             Output::throwError($e->getMessage());
         }
     }
+
+    /**
+     * @param array $lupulos
+     * @return string
+     */
     public function getEditAdicionHtml($lupulos){
         try{
             Superlog::log(__METHOD__);

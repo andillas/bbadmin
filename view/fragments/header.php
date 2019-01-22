@@ -1,10 +1,11 @@
-<?php
-?>
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
 <meta name="description" content="Gestor de lotes">
 <head>
+    <base href="http://localhost/beer_batches_manager/" />
+
+    <script src="assets/js/js.js" language="JavaScript"></script>
     <script src="assets/js/jquery-2.2.4.min.js" language="JavaScript"></script>
     <script src="assets/js/bootstrap.min.js" language="JavaScript"></script>
     <script src="assets/js/js.js" language="JavaScript"></script>
@@ -30,13 +31,8 @@
 
 <nav class="container">
     <ul class="nav nav-tabs">
-        <li id="nav_lote"><a href="?c=lote">Lotes</a></li>
-        <li id="nav_lupulo"><a href="?c=lupulo">Lúpulos</a></li>
-        <li id="nav_malta"><a href="?c=malta">Maltas</a></li>
+        <li id="nav_lote"><a href="lote">Lotes</a></li>
+        <li id="nav_lupulo"><a href="lupulo">Lúpulos</a></li>
+        <li id="nav_malta"><a href="malta">Maltas</a></li>
     </ul>
-    <!--
-    <span class="panel-body">
-        <a href="?c=lote">Lotes</a> | <a href="?c=lupulo">Lúpulos</a> | <a href="?c=malta">Maltas</a>
-    </span>
-    -->
 </nav>
