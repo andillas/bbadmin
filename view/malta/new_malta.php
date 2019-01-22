@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <button type="button" class="btn btn-default" onclick="saveMalta(this.form)">Guardar</button>
-                <button type="button" class="btn btn-checkout" onclick="window.location.href='?c=malta'">Cancelar</button>
+                <button type="button" class="btn btn-checkout" onclick="window.location.href='./malta'">Cancelar</button>
             </div>
         </form>
     </article>

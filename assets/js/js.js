@@ -80,10 +80,10 @@ $(document).ready(function(){
 /*******************LÚPULO********************/
 function saveLupulo(form){
     var nombre = form.nombre_nuevo_lupulo.value;
-    var alfaacidos = form.alfaacidos_nuevo_lupulo.value;
-
+    var alfaacidos = form.alfaacidos_nuevo_lupulo.value.replace(",", ".");
+//"?c=lupulo&a=saveLupulo"
     $.ajax({
-        url : "?c=lupulo&a=saveLupulo",
+        url : "./lupulo/saveLupulo",
         method : "POST",
         data : {"nombre" : nombre, "alfaacidos" : alfaacidos},
         error : function(err){
@@ -97,7 +97,7 @@ function saveLupulo(form){
                 alert(response.message);
                 return false;
             }else{
-                window.location.href = '?c=lupulo';
+                window.location.href = './lupulo';
                 return true;
             }
         }
@@ -112,7 +112,7 @@ function deleteLupulo(id) {
 
     if(del){
         $.ajax({
-           url : '?c=lupulo&a=deleteLupulo',
+           url : './lupulo/deleteLupulo',
             method : 'POST',
             data : {"id" : id},
             error : function(resperror){
@@ -126,7 +126,7 @@ function deleteLupulo(id) {
                    alert(response.message);
                    return false;
                }else{
-                   window.location.href = "?c=lupulo";
+                   window.location.href = "./lupulo";
                    return true;
                }
             }
@@ -135,16 +135,17 @@ function deleteLupulo(id) {
     }
 }
 function editLupulo(id){
-    window.location.href = '?c=lupulo&a=editLupulo&id_lupulo=' + id;
+    window.location.href = './lupulo/editLupulo/' + id;
 }
 function updateLupulo(form){
-    // var id = form.id_editar_malta.value;
-    // var nombre = form.nombre_editar_malta.value;
-    // var tipo = form.tipo_editar_malta.value;
-    // var ebc = form.ebc_editar_malta.value;
+
+    //cambio la coma por punto para que php lo valide como float
+    $("#alfaacidos_editar_lupulo").val(
+        $("#alfaacidos_editar_lupulo").val().replace(",", ".")
+    );
 
     $.ajax({
-       url : '?c=lupulo&a=saveEditedLupulo',
+       url : './lupulo/saveEditedLupulo',
        method : 'POST',
        data : $(form).serialize(),
        error : function(err){
@@ -157,7 +158,7 @@ function updateLupulo(form){
                alert(response.message);
                return false;
            }else{
-               window.location.href = '?c=lupulo';
+               window.location.href = './lupulo';
                return true;
            }
        }
@@ -172,7 +173,7 @@ function saveMalta(form){
     var ebc = form.ebc_nueva_malta.value;
 
     $.ajax({
-        url : "?c=malta&a=saveMalta",
+        url : "./malta/saveMalta",//"?c=malta&a=saveMalta"
         method : "POST",
         data : {"nombre" : nombre, "tipo" : tipo, "ebc" : ebc},
         error : function(err){
@@ -183,7 +184,7 @@ function saveMalta(form){
                alert(response.message);
                return false;
            }else{
-               window.location.href = '?c=malta';
+               window.location.href = './malta';
                return true;
            }
         }
@@ -198,7 +199,7 @@ function deleteMalta(id) {
 
     if(del){
         $.ajax({
-           url : '?c=malta&a=deleteMalta',
+           url : './malta/deleteMalta',//'?c=malta&a=deleteMalta'
             method : 'POST',
             data : {"id" : id},
             error : function(resperror){
@@ -210,7 +211,7 @@ function deleteMalta(id) {
                    alert(response.message);
                    return false;
                }else{
-                   window.location.href = '?c=malta';
+                   window.location.href = './malta';
                    return true;
                }
             }
@@ -220,7 +221,8 @@ function deleteMalta(id) {
     }
 }
 function editMalta(id){
-    window.location.href = '?c=malta&a=editMalta&id_malta=' + id;
+    // window.location.href = '?c=malta&a=editMalta&id=' + id;
+    window.location.href = './malta/editMalta/' + id;
 }
 function updateMalta(form){
     // var id = form.id_editar_malta.value;
@@ -229,7 +231,7 @@ function updateMalta(form){
     // var ebc = form.ebc_editar_malta.value;
 
     $.ajax({
-       url : '?c=malta&a=saveEditedMalta',
+       url : './malta/saveEditedMalta', //'?c=malta&a=saveEditedMalta'
        method : 'POST',
        data : $(form).serialize(),
         error: function (r_error){
@@ -244,7 +246,7 @@ function updateMalta(form){
                 alert(response.message);
                 return false;
             }else{
-                window.location.href = '?c=malta';
+                window.location.href = './malta';
                 return true;
             }
         }
@@ -262,62 +264,6 @@ function updateMalta(form){
 }
 
 /*******************LOTE********************/
-function addNewMalta(){
-    maltas ++;
-    let html = '';
-    cl('add new malta');
-    $.ajax({
-        url : '?c=lote&a=getNewMaltaHtml',
-        method : 'POST',
-        data : {"orden" : maltas},
-        error : function(resperror){
-            ce(resperror);
-        },
-        success : function(response){
-            if(response.status === "ok"){
-                html = response.content;
-                $("#area_maltas").append(html);
-                $("#total_maltas").val(maltas);
-            }else{
-                alert("No ha sido posible realizar la acción.");
-            }
-        }
-    });
-}
-function delNewMalta() {
-    $("#malta_" + maltas).remove();
-    if(maltas > 0)maltas --;
-    $("#total_maltas").val(maltas)
-
-}
-function addNewAdicion(){
-    adiciones ++;
-    let html = '';
-    cl('add new adicion');
-    $.ajax({
-       url : '?c=lote&a=getNewAdicionHtml',
-       method : 'POST',
-       data : {"orden" : adiciones},
-       error : function(resperror){
-           ce(resperror);
-       },
-       success : function(response){
-           if(response.status ==="ok"){
-               html = response.content;
-               $("#area_lupulos").append(html);
-               $("#total_lupulos").val(adiciones);
-           }else{
-              alert("No ha sido posible realizar la acción.");
-           }
-
-       }
-    });
-}
-function delNewAdicion(){
-    $("#lupulo_" + adiciones).remove();
-    if(adiciones > 0)adiciones --;
-    $("#total_lupulos").val(adiciones);
-}
 function saveLote(form) {
 
     //VALIDACION DE CAMPOS REQUERIDOS
@@ -332,7 +278,7 @@ function saveLote(form) {
     let elform = $(form).serialize();
 
     $.ajax({
-       url : "?c=lote&a=saveLote",
+       url : "./lote/saveLote",
        method : "post",
        data : elform,
         error : function (error) {
@@ -349,6 +295,41 @@ function saveLote(form) {
 
     });
 }
+function deleteLote(id) {
+    var lote_name = $("#row_lote_" + id)
+        .find('[data-name="lotename"]')
+        .html();
+
+    var del = confirm("Se va a eliminar el lote " + lote_name);
+
+    if(del){
+        $.ajax({
+           url : './lote/deleteLote',
+           method : 'POST',
+            data : {"id" : id},
+            error : function (err) {
+                ce(err);
+                alert(err);
+                return false;
+            },
+            success : function (response) {
+                if(response. status === 'error'){
+                    ce(response.message);
+                    alert(response.message);
+                    return false
+                }else{
+                    window.location.href = './lote';
+                    return true;
+                }
+            }
+
+        });
+    }
+    return false;
+}
+function editLote(id) {
+    window.location.href = './lote/editLote/' + id;
+}
 function saveEditedLote(form) {
 
     //VALIDACION DE CAMPOS REQUERIDOS
@@ -363,7 +344,7 @@ function saveEditedLote(form) {
     let elform = $(form).serialize();
 
     $.ajax({
-       url : "?c=lote&a=updateLote",
+       url : "./lote/updateLote",
        method : "post",
        data : elform,
         error : function (error) {
@@ -375,13 +356,72 @@ function saveEditedLote(form) {
            if(response.status !== "ok"){
                alert(response.message);
            }else{
-               window.location.href = '?c=lote';
+               window.location.href = './lote';
            }
             return false;
         }
 
     });
 }
-function editLote(id) {
-    window.location.href = '?c=lote&a=editLote&id_lote=' + id;
+
+/**************** INSUMOS *****************/
+//Añade una malta al lote
+function addNewMalta(){
+    maltas ++;
+    let html = '';
+    cl('add new malta');
+    $.ajax({
+        url : './lote/getNewMaltaHtml',
+        method : 'POST',
+        data : {"orden" : maltas},
+        error : function(resperror){
+            ce(resperror);
+        },
+        success : function(response){
+            if(response.status === "ok"){
+                html = response.content;
+                $("#area_maltas").append(html);
+                $("#total_maltas").val(maltas);
+            }else{
+                alert("No ha sido posible realizar la acción.");
+            }
+        }
+    });
+}
+//Elimina la última malta añadida al lote
+function delNewMalta() {
+    $("#malta_" + maltas).remove();
+    if(maltas > 0)maltas --;
+    $("#total_maltas").val(maltas)
+
+}
+//Añade una adición de lúpulo al lote
+function addNewAdicion(){
+    adiciones ++;
+    let html = '';
+    cl('add new adicion');
+    $.ajax({
+        url : './lote/getNewAdicionHtml',
+        method : 'POST',
+        data : {"orden" : adiciones},
+        error : function(resperror){
+            ce(resperror);
+        },
+        success : function(response){
+            if(response.status ==="ok"){
+                html = response.content;
+                $("#area_lupulos").append(html);
+                $("#total_lupulos").val(adiciones);
+            }else{
+                alert("No ha sido posible realizar la acción.");
+            }
+
+        }
+    });
+}
+//Elimina la última adición de lúpulo añadida al lote
+function delNewAdicion(){
+    $("#lupulo_" + adiciones).remove();
+    if(adiciones > 0)adiciones --;
+    $("#total_lupulos").val(adiciones);
 }

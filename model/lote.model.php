@@ -240,9 +240,10 @@ class Lote
 
             if (!$qy->execute()) throw new Exception($qy->error);
 
-            return $qy->num_rows;
+            return true;
         } catch (Exception $e) {
-            return $e->getMessage();
+            echo $e->getMessage();
+            return false;
         }
     }
 

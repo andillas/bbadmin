@@ -60,7 +60,7 @@ class LupuloController
 
     public function editLupulo(){
         try{
-            if(!$id_lupulo = filter_input(INPUT_GET, 'id_lupulo', FILTER_VALIDATE_INT)) throw new Exception('El id no es válido.');
+            if(!$id_lupulo = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT)) throw new Exception('El id no es válido.');
             $lupulo_data = $this->obj_lupulo->getLupuloById($id_lupulo);
 
             require_once "view/fragments/header.php";
@@ -78,7 +78,7 @@ class LupuloController
 
             if(!$id = filter_input(INPUT_POST, 'id_editar_lupulo', FILTER_VALIDATE_INT))throw new Exception('El id no es válido');
             if(!$nombre = filter_input(INPUT_POST, 'nombre_editar_lupulo'))throw new Exception('El nombre no es válido');
-            if(!$alfaacidos = filter_input(INPUT_POST, 'alfaacidos_editar_lupulo'))throw new Exception('El valor de Alfa Ácidos no es válido');
+            if(!$alfaacidos = filter_input(INPUT_POST, 'alfaacidos_editar_lupulo', FILTER_VALIDATE_FLOAT))throw new Exception('El valor de Alfa Ácidos no es válido');
             $notas = null;
 
             $update = $this->obj_lupulo->updateLupuloById($id, $nombre, $alfaacidos, $notas);
