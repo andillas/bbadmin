@@ -1,5 +1,5 @@
 <section class="container">
-    <header><h2>Nuevo lúpulo</h2></header>
+    <header><h2 class="titu-seccion">Nuevo lúpulo</h2></header>
     <article>
         <form>
             <div class="form-group">

@@ -1,7 +1,7 @@
 <section class="container">
     <header>
-        <h2>Maltas
-                <a class="btn btn-primary float-right" href="./malta/newMalta">Nueva Malta</a>
+        <h2 class="titu-seccion">Maltas
+                <a class="btn btn-primary right" href="./malta/newMalta">Nueva Malta</a>
         </h2>
 
     </header>

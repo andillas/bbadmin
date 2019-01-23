@@ -1,7 +1,7 @@
 <section class="container">
     <header>
-        <h2>Lúpulos
-                <a class="btn btn-primary float-right" href="./lupulo/newLupulo">Nuevo lúpulo</a>
+        <h2 class="titu-seccion">Lúpulos
+                <a class="btn btn-primary right" style="" href="./lupulo/newLupulo">Nuevo lúpulo</a>
         </h2>
 
     </header>

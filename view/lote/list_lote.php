@@ -1,7 +1,7 @@
 <section class="container">
     <header>
-        <h2>Lotes
-                <a class="btn btn-primary float-right" href="./lote/newLote">Nuevo Lote</a>
+        <h2 class="titu-seccion">Lotes
+                <a class="btn btn-primary right" href="./lote/newLote">Nuevo Lote</a>
         </h2>
 
     </header>
