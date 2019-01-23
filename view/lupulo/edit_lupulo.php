@@ -1,5 +1,5 @@
 <section class="container">
-    <header><h2>Editar lúpulo</h2></header>
+    <header><h2 class="titu-seccion">Editar lúpulo</h2></header>
     <article>
         <form>
             <input type="hidden" id="id_editar_lupulo" name="id_editar_lupulo" value="<?php echo $lupulo_data->id_lupulo; ?>">

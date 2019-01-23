@@ -125,3 +125,31 @@ fieldset {
 .right{
     float: right;
 }
+
+header .jumbotron{
+  margin-top: 10px;
+  padding-top: 100px;
+  color: #ffffff;
+  height: 200px;
+  background-image: url('../img/Cerveza-artesanal.jpg');
+  background-size: cover;
+  border-radius: 15px;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+  text-shadow: -2px -3px 2px #3d230a;
+
+}
+header h1{
+  font-size: 90px !important;
+  font-weight: 800;
+}
+.titu-seccion{
+  margin: 45px 30px 25px 7px;
+}
+legend{ padding: 0 20px; width: auto !important; border-bottom: 0 !important; }
+.fs-maltas{ margin-left: 15px; padding-left: 40px }
+.fs-lupulos{ float: right; margin-right: 18px; padding-left: 40px }
+.fs-maltas .btn{width: auto !important;}
+.fs-lupulos .btn{width: auto !important;}
+
+

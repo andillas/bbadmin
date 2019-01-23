@@ -82,38 +82,38 @@
                                     <!--**********-->
                                     <!--  MALTAS  -->
                                     <!--**********-->
-            <div class="row" style="padding: 5px;background-color: crimson">
-            <fieldset class="col-lg-5" style="display: block">
-                <legend>Maltas</legend>
-                <div class="form-group row">
+            <div class="row">
+                <fieldset class="col-lg-5 fs-maltas">
+                    <legend>Maltas</legend>
+                    <div class="form-group row">
+                            <div class="col-lg-2">
+                                <a class="form-control btn btn-default right" onclick="addNewMalta()">Añadir</a>
+                            </div>
+                            <div class="col-lg-2">
+                                <a class="form-control btn btn-default right" onclick="delNewMalta()">Quitar</a>
+                                <input type="hidden" id="total_maltas" name="total_maltas" value="0">
+                            </div>
+                    </div>
+                    <div class="form-group row" id="area_maltas"></div>
+                </fieldset>
+
+                                        <!--***********-->
+                                        <!--  LÚPULOS  -->
+                                        <!--***********-->
+
+                <fieldset class="col-lg-5 fs-lupulos">
+                    <legend>Lúpulos</legend>
+                    <div class="form-group row">
                         <div class="col-lg-2">
-                            <a class="form-control btn btn-default" style="float: right" onclick="addNewMalta()">Añadir</a>
+                            <a class="form-control btn btn-default right" onclick="addNewAdicion()">Añadir</a>
                         </div>
                         <div class="col-lg-2">
-                            <a class="form-control btn btn-default" style="float: right" onclick="delNewMalta()">Quitar</a>
-                            <input type="hidden" id="total_maltas" name="total_maltas" value="0">
+                            <a class="form-control btn btn-default right" onclick="delNewAdicion()">Quitar</a>
+                            <input type="hidden" id="total_lupulos" name="total_lupulos" value="0">
                         </div>
-                </div>
-                <div class="form-group row" id="area_maltas"></div>
-            </fieldset>
-
-                                    <!--***********-->
-                                    <!--  LÚPULOS  -->
-                                    <!--***********-->
-
-            <fieldset class="col-lg-5">
-                <legend>Lúpulos</legend>
-                <div class="form-group row">
-                    <div class="col-lg-2">
-                        <a class="form-control btn btn-default" style="float: right" onclick="addNewAdicion()">Añadir</a>
                     </div>
-                    <div class="col-lg-2">
-                        <a class="form-control btn btn-default" style="float: right" onclick="delNewAdicion()">Quitar</a>
-                        <input type="hidden" id="total_lupulos" name="total_lupulos" value="0">
-                    </div>
-                </div>
-                <div class="form-group row" id="area_lupulos"></div>
-            </fieldset>
+                    <div class="form-group row" id="area_lupulos"></div>
+                </fieldset>
             </div>
 
 

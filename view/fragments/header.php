@@ -24,7 +24,7 @@
 </head>
 <body>
 <header>
-    <div class="jumbotron">
+    <div class="jumbotron container">
         <h1 class="container">Gestor de lotes</h1>
     </div>
 </header>
