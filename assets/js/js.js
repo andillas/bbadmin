@@ -71,7 +71,7 @@ function validateField(campo, tipo, valor){
     return result;
 }
 
-$(document).ready(function(){
+$(function(){
    //DOES NOTHING BY NOW;
 });
 
