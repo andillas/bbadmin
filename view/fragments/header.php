@@ -3,18 +3,23 @@
 <meta charset="UTF-8">
 <meta name="description" content="Gestor de lotes">
 <head>
-    <base href="http://localhost/beer_batches_manager/" />
+    <base href="<?php echo parse_ini_file(dirname(dirname(__DIR__)) . '/conf/config.ini')['basetag']; ?>" />
 
-    <script src="assets/js/js.js" language="JavaScript"></script>
     <script src="assets/js/jquery-2.2.4.min.js" language="JavaScript"></script>
+    <script src="assets/js/js.js" language="JavaScript"></script>
     <script src="assets/js/bootstrap.min.js" language="JavaScript"></script>
     <script src="assets/js/js.js" language="JavaScript"></script>
     <script>
         $(function(){
+            /*
+            Esto dejó de funcionar con las urls amigables mediante htaccesss
+
             let params = new URLSearchParams(window.location.search);
             let controller = params.get('c');
-
             $("#nav_" + controller).addClass('active');
+            */
+
+            $("#nav_<?php echo $_REQUEST['c']; ?>").addClass('active');
         });
 
 

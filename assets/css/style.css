@@ -125,14 +125,19 @@ fieldset {
 .right{
     float: right;
 }
-
-header .jumbotron{
+/*
+https://images.unsplash.com/photo-1474314005122-3c07c4df1224
+https://images.unsplash.com/photo-1535359056830-d4badde79747
+*/
+header div.jumbotron{
   margin-top: 10px;
   padding-top: 100px;
   color: #ffffff;
   height: 200px;
-  background-image: url('../img/Cerveza-artesanal.jpg');
+  background-image: url('https://images.unsplash.com/photo-1535359056830-d4badde79747');
+  /*background-image: url('../img/Cerveza-artesanal.jpg');*/
   background-size: cover;
+  background-position-y: 650px;
   border-radius: 15px;
   -webkit-transition: 0.5s all;
   transition: 0.5s all;
